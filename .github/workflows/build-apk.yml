@@ -19,13 +19,34 @@ jobs:
           node-version: '20'
 
       - name: Install Capacitor
-        run: npm install @capacitor/cli @capacitor/core @capacitor/android typescript
+        run: npm install @capacitor/cli @capacitor/core @capacitor/android typescript @capacitor/local-notifications @capacitor-community/admob@6.2.0
 
       - name: Add Android platform (first run only)
         run: |
           rm -f capacitor.config.ts
           if [ ! -d android ]; then npx cap add android; fi
           npx cap sync android
+
+      - name: Configure AdMob App ID
+        # The AdMob SDK refuses to initialise without this meta-data.
+        # App ID is public-safe (it only identifies the app; it cannot
+        # move money or open the AdMob account).
+        run: |
+          python3 - << 'EOF'
+          import pathlib
+          app_id = 'ca-app-pub-2948876721824340~4162645161'
+          manifest = pathlib.Path('android/app/src/main/AndroidManifest.xml')
+          s = manifest.read_text()
+          if 'com.google.android.gms.ads.APPLICATION_ID' not in s:
+              s = s.replace('</application>', '    <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="@string/admob_app_id"/>\n    </application>', 1)
+              manifest.write_text(s)
+          strings = pathlib.Path('android/app/src/main/res/values/strings.xml')
+          t = strings.read_text()
+          if 'admob_app_id' not in t:
+              t = t.replace('</resources>', '    <string name="admob_app_id">' + app_id + '</string>\n</resources>', 1)
+              strings.write_text(t)
+          print('admob configured')
+          EOF
 
       - name: Apply custom app icon
         run: |
