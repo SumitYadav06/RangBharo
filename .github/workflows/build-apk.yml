@@ -29,6 +29,7 @@ jobs:
 
       - name: Apply custom app icon
         run: |
+          python3 -m pip install -q pillow
           python3 - << 'EOF'
           from PIL import Image
           import pathlib
