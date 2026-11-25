@@ -2,13 +2,13 @@
 DRAFT — prepared 2026-11-14. Do not publish as-is: fill the two [bracketed] items, then host it at one public link (Uptodown / AdMob ask for the link, not the file itself).
 
 **App:** RangBharo — Color by Number
-**Package (suggested, confirm before upload):** com.rangbharo.colorbynumber
+**Package:** com.rangbharo.colorbynumber
 **Developer:** [Developer / publisher name — fill in before publishing]
 **Contact:** [Contact email — fill in before publishing]
 **Effective date:** [Date of first publish]
 
 ## 1. What this app is
-RangBharo is a free colour-by-number puzzle game with 196 pictures across categories such as Animals, Nature, Vehicles, Food, Ocean, Space and Patterns, in Easy, Medium, Hard and Expert difficulty. The game is free and earns only through ads. There is no paid Premium, no in-app purchase and no subscription in this version.
+RangBharo is a free colour-by-number puzzle game with 214 pictures across categories such as Animals, Nature, Vehicles, Food, Ocean, Space and Patterns, in Easy, Medium, Hard and Expert difficulty. The game is free and earns only through ads. There is no paid Premium, no in-app purchase and no subscription in this version.
 
 ## 2. Accounts, logins and payments
 The app does not ask you to create an account, log in, or give your name, email address, phone number or payment details. No payment is collected inside the app.
@@ -17,7 +17,11 @@ The app does not ask you to create an account, log in, or give your name, email 
 Your progress (which levels are unlocked and completed), language choice and music/sound settings are saved only on your own device. This information is not sent to us and we cannot see it.
 
 ## 4. Advertising — Google AdMob
-The app shows video ads through Google AdMob (rewarded video ads to unlock pictures, levels and extra hints, and interstitial video ads after every 3 levels). AdMob and Google may collect and use device information to show ads, for example:
+The app shows ads through Google AdMob: a banner on the Home screen only,
+a video interstitial after every 3rd finished picture, an app-open ad when
+the app opens, and rewarded video ads to unlock pictures, levels and extra
+hints (only when the player taps Watch Ad). AdMob and Google may collect and
+use device information to show ads, for example:
 - device identifiers (such as the advertising ID),
 - approximate location (derived from IP address),
 - app usage and ad interaction data,
@@ -43,4 +47,4 @@ If this policy changes, the updated version will be posted at the same link, wit
 For questions about this policy or the app, contact: [Contact email — fill in before publishing]
 
 ---
-*Hindi note for the user (not part of the published policy): ye draft Uptodown aur AdMob ke liye taiyaar hai. Publish karne se pehle sirf 2 cheezein bharni hain — developer/publisher ka naam aur ek contact email. Game ka naam RangBharo aur package com.rangbharo.colorbynumber abhi suggested hain; upload se pehle dono confirm kar lena, kyunki package naam baad me badalna mushkil hota hai.*
+*Hindi note for the user (not part of the published policy): ye draft Uptodown aur AdMob ke liye taiyaar hai. Publish karne se pehle sirf 2 cheezein bharni hain — developer/publisher ka naam aur ek contact email. Game ka naam RangBharo aur package com.rangbharo.colorbynumber confirmed hain.*
