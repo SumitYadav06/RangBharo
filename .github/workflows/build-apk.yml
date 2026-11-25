@@ -58,14 +58,14 @@ jobs:
           from PIL import Image
           import pathlib
           src = Image.open('www/icon.png').convert('RGBA')
-          # Safe-zone icon: art covers 72% of the canvas on a transparent
+          # Safe-zone icon: art covers 60% of the canvas on a transparent
           # background. A full-bleed square loses 21.5% of its pixels to a
-          # circle mask (corners + edges cut off); at 72% the whole art
+          # circle mask (corners + edges cut off); at 60% the whole art
           # stays visible under circle and squircle masks. Build one
           # 432px master (adaptive-foreground size) with LANCZOS and
           # derive every density from it, so the foreground is never an
           # upscaled 192px image (that blur was the low-quality look).
-          PAD = 0.72
+          PAD = 0.60
           master = Image.new('RGBA', (432, 432), (0, 0, 0, 0))
           side = int(432 * PAD)
           art = src.resize((side, side), Image.LANCZOS)
