@@ -772,6 +772,20 @@
   .pic-card .thumb{min-width:0;}
   .overlay .win-card{max-width:min(420px, calc(100vw - 24px));}
   .ad-unit-line{overflow-wrap:anywhere;}
+  /* ==========================================================
+     v15 — REAL ARTWORK (generated in-game art, local files)
+     Splash hero on Home, a category scene banner above the
+     gallery (it follows the Up Next picture's world), and a
+     celebration picture on the win screen. All images are
+     local in assets/ so the game still works fully offline;
+     loading="lazy" keeps them off the first paint.
+  ========================================================== */
+  .splash-hero{max-width:860px; margin:0 auto 14px; border-radius:var(--radius); overflow:hidden; border:2px solid var(--line); box-shadow:var(--shadow);}
+  .splash-hero img{display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover;}
+  .cat-art{max-width:860px; margin:0 auto 14px; border-radius:var(--radius); overflow:hidden; border:2px solid var(--line); box-shadow:var(--shadow);}
+  .cat-art img{display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover;}
+  .win-art{border-radius:18px; overflow:hidden; border:3px solid var(--line); margin-bottom:10px;}
+  .win-art img{display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover;}
 </style>
 </head>
 <body>
@@ -783,6 +797,7 @@
       <h1 class="game-name">RangBharo</h1>
       <p class="hero-sub">— Color by Number —</p>
     </div>
+    <div class="splash-hero"><img src="assets/splash.jpg" alt="RangBharo — cute animals painting a rainbow" loading="lazy" decoding="async"></div>
     <div class="topbar">
       <div class="top-progress" id="topProgress">
         <span class="tp-ic" aria-hidden="true">🎨</span>
@@ -803,6 +818,7 @@
     </div>
     </div>
     <div class="featured hidden" id="featuredCard" role="button" aria-label="Play next picture"></div>
+    <div class="cat-art" id="catArtWrap"><img id="catArtImg" alt="" loading="lazy" decoding="async"></div>
     <div class="grid" id="galleryGrid"></div>
     <div class="empty-msg hidden" id="emptyMsg"></div>
     <div class="loadmore-wrap" id="loadMoreWrap">
@@ -858,6 +874,7 @@
 <!-- ================= WIN ================= -->
 <div class="overlay hidden" id="winOverlay">
   <div class="win-card">
+    <div class="win-art"><img src="assets/win-celebration.jpg" alt="Celebration — trophy, stars and confetti" loading="lazy" decoding="async"></div>
     <div class="win-thumb" id="winThumb"></div>
     <div class="stars"><span class="on">★</span><span class="on">★</span><span class="on">★</span></div>
     <h2 data-i18n="winTitle">Picture Complete!</h2>
@@ -937,7 +954,7 @@
       <div><div class="set-label">🗑️ <span data-i18n="resetProgress">Reset Progress</span></div><div class="set-desc" data-i18n="resetDesc">Clear all finished pictures and stars</div></div>
       <button class="tool-btn" id="resetBtn" style="flex:0 0 auto; padding:10px 16px;" data-i18n="reset">Reset</button>
     </div>
-    <div class="version-line">RangBharo — Color by Number · Version 14.0 · New Gallery Home · Ads Ready</div>
+    <div class="version-line">RangBharo — Color by Number · Version 15.0 · 240 Pictures · New Art & Music · Ads Ready</div>
     <div class="win-actions" style="margin-top:16px;">
       <button class="big-btn main" id="settingsCloseBtn" data-i18n="doneBtn">Done</button>
     </div>
@@ -3605,6 +3622,480 @@ add(mk('kraken','Kraken','ocean',4,true,9,[
   CC(168,80,8,3), CC(340,90,7,3)
 ],'<circle cx="226" cy="156" r="5" fill="#263238"/><circle cx="278" cy="156" r="5" fill="#263238"/><path d="M212,138 L240,146 M292,138 L264,146" stroke="#263238" stroke-width="3.5" stroke-linecap="round"/><g fill="#0E7C6B" opacity=".5"><circle cx="232" cy="196" r="4"/><circle cx="262" cy="206" r="4"/><circle cx="252" cy="182" r="3.4"/></g><g fill="none" stroke="#FFFFFF" stroke-width="2.6" opacity=".55"><circle cx="60" cy="220" r="6"/><circle cx="356" cy="180" r="5"/></g>'));
 
+/* ================= v14 — 44 NEW PICTURES (growth pack) =================
+   Fresh subjects only, drawn like the rest of the catalog:
+   bigger parts listed first, every number inside its own part,
+   tiny details (eyes, whiskers) kept as decoration so no number
+   ever has to squeeze into a speck. Appended at the END of the
+   catalog so every existing picture keeps its level number and
+   all saved progress (keyed by picture id) stays exactly as-is.
+   Machine-checked: every region keeps visible area and a visible
+   label spot after larger-first draw order (see check script). */
+function RC(cx,cy,r,n,lx,ly){ return {t:'circle',cx:cx,cy:cy,r:r,lx:lx,ly:ly,n:n}; }
+function RE(cx,cy,rx,ry,n,lx,ly,rot){ var o={t:'ellipse',cx:cx,cy:cy,rx:rx,ry:ry,lx:lx,ly:ly,n:n}; if(rot)o.rot=rot; return o; }
+
+/* ---- ANIMALS ---- */
+add(mk('hamster','Cute Hamster','animals',1,false,3,[
+  RR(0,340,400,60,5),
+  EE(200,250,110,80,1),
+  CC(200,150,70,1),
+  CC(140,92,26,2), CC(260,92,26,2),
+  CC(140,92,13,3), CC(260,92,13,3),
+  EE(200,290,55,35,4),
+  EE(150,322,26,13,2), EE(250,322,26,13,2),
+  CC(200,168,9,3),
+  EE(312,268,30,18,2,-25),
+  CC(330,90,18,6)
+],'<circle cx="176" cy="142" r="7" fill="#263238"/><circle cx="224" cy="142" r="7" fill="#263238"/><circle cx="178" cy="139" r="2.4" fill="#fff"/><circle cx="226" cy="139" r="2.4" fill="#fff"/><circle cx="164" cy="162" r="7" fill="#FF6B9D" opacity=".55"/><circle cx="236" cy="162" r="7" fill="#FF6B9D" opacity=".55"/><path d="M200,178 L200,184 M200,184 C194,190 186,189 183,184 M200,184 C206,190 214,189 217,184" fill="none" stroke="#263238" stroke-width="3" stroke-linecap="round"/>'));
+add(mk('chameleon','Chameleon','animals',3,false,8,[
+  RR(40,300,320,18,7,9),
+  EE(200,220,120,70,1),
+  CC(280,150,55,1),
+  CC(300,140,18,2),
+  EE(96,286,40,26,1,-20),
+  CC(70,300,20,4),
+  RR(150,270,16,44,2,6), RR(230,270,16,44,2,6),
+  PG('180,150 200,110 220,150',200,138,3),
+  EE(200,180,40,26,3),
+  EE(90,110,30,16,4,-30),
+  CC(60,60,14,6)
+],'<circle cx="300" cy="140" r="7" fill="#263238"/><circle cx="303" cy="137" r="2.4" fill="#fff"/><path d="M318,168 Q330,172 338,164" fill="none" stroke="#263238" stroke-width="3" stroke-linecap="round"/><path d="M150,300 L150,318 M230,300 L230,318" stroke="#263238" stroke-width="3" stroke-linecap="round" opacity=".4"/>'));
+add(mk('meerkat','Meerkat','animals',2,false,2,[
+  RR(0,330,400,70,5),
+  EE(200,260,85,90,1),
+  CC(200,140,62,1),
+  CC(142,96,20,2), CC(258,96,20,2),
+  EE(200,300,48,45,3),
+  EE(152,196,20,28,4,-18), EE(248,196,20,28,4,18),
+  RR(150,250,18,40,2,7), RR(232,250,18,40,2,7),
+  CC(200,164,10,4),
+  CC(330,70,20,6),
+  EE(70,80,28,14,6,-20)
+],'<circle cx="168" cy="140" r="7" fill="#263238"/><circle cx="232" cy="140" r="7" fill="#263238"/><circle cx="170" cy="137" r="2.4" fill="#fff"/><circle cx="234" cy="137" r="2.4" fill="#fff"/><ellipse cx="200" cy="156" rx="8" ry="6" fill="#263238"/><path d="M200,162 L200,168 M200,168 C194,174 186,173 183,168 M200,168 C206,174 214,173 217,168" fill="none" stroke="#263238" stroke-width="3" stroke-linecap="round"/>'));
+add(mk('redpanda','Red Panda','animals',2,false,1,[
+  RR(0,0,400,400,6),
+  EE(200,270,100,75,1),
+  CC(200,150,68,1),
+  PG('140,110 118,52 172,76',142,84,2),
+  PG('260,110 282,52 228,76',258,84,2),
+  EE(200,150,50,34,3),
+  CC(200,168,10,4),
+  EE(200,300,52,32,3),
+  PG('288,300 360,330 292,344',318,322,2),
+  CC(200,120,14,5),
+  CC(70,70,16,5), CC(330,80,13,5)
+],'<circle cx="176" cy="142" r="7" fill="#263238"/><circle cx="224" cy="142" r="7" fill="#263238"/><circle cx="178" cy="139" r="2.4" fill="#fff"/><circle cx="226" cy="139" r="2.4" fill="#fff"/><circle cx="164" cy="164" r="6" fill="#FF6B9D" opacity=".5"/><circle cx="236" cy="164" r="6" fill="#FF6B9D" opacity=".5"/><path d="M200,176 L200,182 M200,182 C194,188 186,187 183,182 M200,182 C206,188 214,187 217,182" fill="none" stroke="#263238" stroke-width="3" stroke-linecap="round"/>'));
+add(mk('axolotl','Axolotl','ocean',2,false,9,[
+  RR(0,0,400,400,6),
+  EE(200,240,90,110,1),
+  CC(200,140,62,1),
+  EE(128,110,26,14,2,-35), EE(138,150,26,14,2,-15), EE(132,190,24,13,2,10),
+  EE(272,110,26,14,2,35), EE(262,150,26,14,2,15), EE(268,190,24,13,2,-10),
+  EE(200,300,45,30,3),
+  CC(200,160,9,4),
+  CC(70,80,13,5), CC(330,90,11,5), CC(90,320,12,5), CC(320,320,13,5)
+],'<circle cx="176" cy="138" r="6" fill="#263238"/><circle cx="224" cy="138" r="6" fill="#263238"/><circle cx="178" cy="135" r="2" fill="#fff"/><circle cx="226" cy="135" r="2" fill="#fff"/><path d="M188,162 Q200,168 212,162" fill="none" stroke="#263238" stroke-width="3" stroke-linecap="round"/><circle cx="164" cy="156" r="5" fill="#FF6B9D" opacity=".5"/><circle cx="236" cy="156" r="5" fill="#FF6B9D" opacity=".5"/>'));
+add(mk('capybara','Capybara','animals',2,false,4,[
+  PG('0,300 80,284 160,312 240,298 320,286 400,296 400,400 0,400',200,352,5),
+  EE(200,250,120,70,1),
+  RE(300,190,62,48,1,300,190),
+  CC(352,168,12,2), CC(352,196,12,2),
+  EE(150,300,40,20,2),
+  EE(250,300,40,20,2),
+  RC(96,228,22,3,96,228),
+  EE(200,262,50,30,4),
+  CC(70,90,18,6), CC(330,80,15,6)
+],'<circle cx="330" cy="176" r="6" fill="#263238"/><circle cx="332" cy="174" r="2" fill="#fff"/><circle cx="352" cy="168" r="3" fill="#263238"/><circle cx="352" cy="196" r="3" fill="#263238"/><path d="M344,214 Q356,220 366,212" fill="none" stroke="#263238" stroke-width="3" stroke-linecap="round"/>'));
+add(mk('llama','Llama','animals',2,false,5,[
+  RR(0,330,400,70,6),
+  EE(200,280,95,65,1),
+  RR(150,120,34,130,1,10),
+  CC(172,96,42,1),
+  PG('146,70 134,34 162,52',146,54,2),
+  PG('196,70 208,34 182,52',194,54,2),
+  EE(200,292,55,32,3),
+  RR(150,320,20,40,2,6), RR(230,320,20,40,2,6),
+  RR(120,250,160,26,4,8),
+  CC(330,80,18,5), CC(70,90,15,5)
+],'<circle cx="160" cy="92" r="5" fill="#263238"/><circle cx="184" cy="92" r="5" fill="#263238"/><circle cx="162" cy="90" r="1.8" fill="#fff"/><circle cx="186" cy="90" r="1.8" fill="#fff"/><ellipse cx="172" cy="108" rx="7" ry="5" fill="#263238"/><path d="M172,114 L172,119 M172,119 C167,124 161,123 159,119 M172,119 C177,124 183,123 185,119" fill="none" stroke="#263238" stroke-width="3" stroke-linecap="round"/>'));
+add(mk('ostrich','Ostrich','animals',2,false,7,[
+  RR(0,330,400,70,5),
+  EE(200,260,95,75,1),
+  RR(215,110,26,130,1,10),
+  CC(228,88,34,1),
+  PG('252,82 286,92 252,102',264,92,2),
+  EE(200,250,55,40,3),
+  RR(180,320,14,44,2,5), RR(220,320,14,44,2,5),
+  EE(140,300,30,16,4,-20), EE(260,300,30,16,4,20),
+  CC(200,160,14,6),
+  CC(80,80,18,6), CC(320,70,15,6)
+],'<circle cx="220" cy="84" r="5" fill="#263238"/><circle cx="222" cy="82" r="1.8" fill="#fff"/><path d="M150,260 C170,240 230,240 250,260" fill="none" stroke="#263238" stroke-width="3" stroke-linecap="round" opacity=".4"/>'));
+add(mk('armadillo','Armadillo','animals',3,false,2,[
+  RR(0,330,400,70,6),
+  EE(200,240,115,80,1),
+  EE(200,240,85,58,2),
+  EE(200,240,55,38,3),
+  CC(310,230,42,1),
+  PG('336,210 360,222 336,238',346,224,4),
+  EE(96,250,30,20,1,-25),
+  RR(160,300,18,36,2,6), RR(230,300,18,36,2,6),
+  CC(80,90,16,5), CC(330,80,14,5)
+],'<circle cx="318" cy="224" r="5" fill="#263238"/><circle cx="320" cy="222" r="1.8" fill="#fff"/><circle cx="336" cy="244" r="3" fill="#263238"/><path d="M200,182 C220,168 260,168 280,182 M200,298 C220,312 260,312 280,298" fill="none" stroke="#263238" stroke-width="3" stroke-linecap="round" opacity=".4"/>'));
+add(mk('platypus','Platypus','animals',2,false,6,[
+  PG('0,310 80,296 160,320 240,306 320,294 400,302 400,400 0,400',200,356,5),
+  EE(200,250,110,65,1),
+  CC(300,210,48,1),
+  EE(340,210,42,24,2),
+  EE(96,260,36,22,1,-20),
+  RR(160,300,18,30,3,6), RR(230,300,18,30,3,6),
+  EE(200,268,45,26,4),
+  CC(70,90,15,6), CC(330,80,13,6)
+],'<circle cx="292" cy="200" r="6" fill="#263238"/><circle cx="294" cy="198" r="2" fill="#fff"/><circle cx="318" cy="206" r="3" fill="#263238"/><circle cx="352" cy="204" r="3" fill="#263238"/><path d="M330,228 Q344,234 356,226" fill="none" stroke="#263238" stroke-width="3" stroke-linecap="round"/>'));
+add(mk('seagull','Seagull','animals',1,false,10,[
+  RR(0,0,400,400,5),
+  EE(200,330,220,45,6),
+  EE(200,220,80,60,1),
+  CC(248,160,40,1),
+  PG('280,152 316,162 280,172',294,162,2),
+  PG('150,190 96,150 140,214',128,182,3),
+  PG('250,190 304,150 260,214',272,182,3),
+  EE(200,240,40,24,4),
+  CC(90,90,16,7), CC(320,80,13,7)
+],'<circle cx="256" cy="154" r="5" fill="#263238"/><circle cx="258" cy="152" r="1.8" fill="#fff"/><path d="M240,176 Q252,182 264,176" fill="none" stroke="#263238" stroke-width="3" stroke-linecap="round"/>'));
+add(mk('firefly','Firefly','animals',1,false,0,[
+  RR(0,0,400,400,6),
+  EE(200,230,70,45,1),
+  CC(200,160,42,1),
+  PG('170,140 140,110 168,128',160,128,2),
+  PG('230,140 260,110 232,128',240,127,2),
+  EE(200,260,50,30,3),
+  CC(200,300,18,4),
+  CC(80,90,12,5), CC(320,80,10,5), CC(90,320,11,5), CC(320,320,12,5)
+],'<circle cx="186" cy="156" r="6" fill="#263238"/><circle cx="214" cy="156" r="6" fill="#263238"/><circle cx="188" cy="154" r="2" fill="#fff"/><circle cx="216" cy="154" r="2" fill="#fff"/><path d="M190,176 Q200,182 210,176" fill="none" stroke="#263238" stroke-width="3" stroke-linecap="round"/><g fill="#FFD93D" opacity=".8"><circle cx="200" cy="300" r="4"/><circle cx="80" cy="90" r="3"/><circle cx="320" cy="80" r="3"/></g>'));
+
+/* ---- VEHICLES ---- */
+add(mk('jetski','Jet Ski','vehicles',2,false,6,[
+  PG('0,300 80,286 160,308 240,296 320,288 400,298 400,400 0,400',200,352,5),
+  PG('120,260 280,260 300,300 100,300',200,282,1),
+  EE(200,240,70,28,2),
+  RR(180,200,40,40,3,6),
+  PG('170,200 230,200 220,180 180,180',200,190,4),
+  CC(330,80,18,7), CC(80,90,14,7)
+],''));
+add(mk('snowmobile','Snowmobile','vehicles',3,false,4,[
+  RR(0,320,400,80,7),
+  RR(90,270,220,36,1,8),
+  PG('250,270 320,240 330,270',292,258,2),
+  RR(280,196,50,44,3,6),
+  PG('230,270 260,236 300,236 310,270',272,256,2),
+  CC(130,312,20,4), CC(190,312,20,4), CC(250,312,20,4),
+  RR(90,306,220,10,5),
+  CC(330,90,18,6), CC(70,80,14,6)
+],'<circle cx="130" cy="312" r="6" fill="#263238"/><circle cx="190" cy="312" r="6" fill="#263238"/><circle cx="250" cy="312" r="6" fill="#263238"/>'));
+add(mk('forklift','Forklift','vehicles',3,false,2,[
+  RR(0,330,400,70,6),
+  RR(90,220,130,110,1,8),
+  RR(220,180,16,150,2),
+  RR(220,180,90,14,2),
+  RR(220,300,110,14,3),
+  RR(120,150,80,70,4,6),
+  RC(130,300,30,5,130,282), RC(130,300,14,7,130,300),
+  RC(200,300,30,5,200,282), RC(200,300,14,7,200,300),
+  RR(250,140,60,60,3),
+  CC(330,80,16,6)
+],''));
+add(mk('tram','Tram','vehicles',2,false,8,[
+  RR(0,330,400,70,6),
+  RR(70,160,260,150,1,10),
+  RR(90,180,50,50,2,8), RR(160,180,50,50,2,8), RR(230,180,50,50,2,8),
+  RR(70,240,260,26,3),
+  RC(120,310,26,4,120,294), RC(120,310,12,5,120,310),
+  RC(280,310,26,4,280,294), RC(280,310,12,5,280,310),
+  RR(180,120,40,40,7),
+  CC(330,70,18,6)
+],'<path d="M196,120 L220,96 M204,120 L228,96" stroke="#263238" stroke-width="4" stroke-linecap="round"/>'));
+add(mk('rickshaw','Rickshaw','vehicles',2,false,1,[
+  RR(0,330,400,70,6),
+  PG('110,200 290,200 300,260 100,260',200,232,1),
+  PG('120,200 280,200 260,140 140,140',200,172,2),
+  RC(150,290,34,3,150,268), RC(150,290,15,4,150,290),
+  RC(250,290,34,3,250,268), RC(250,290,15,4,250,290),
+  RR(140,270,120,18,5,7),
+  RR(300,230,60,10,7,5),
+  CC(330,80,16,6), CC(70,90,14,6)
+],''));
+add(mk('monstertruck','Monster Truck','vehicles',3,false,0,[
+  RR(0,330,400,70,6),
+  PG('120,190 280,190 300,260 100,260',200,228,1),
+  PG('150,190 250,190 240,140 160,140',200,168,2),
+  RC(130,290,44,3,130,258), RC(130,290,20,4,130,290),
+  RC(280,290,44,3,280,258), RC(280,290,20,4,280,290),
+  RR(160,150,80,20,5,7),
+  CC(330,80,16,6)
+],'<path d="M200,140 L200,96 M200,96 L236,106 L200,116 Z" fill="#EF476F"/>'));
+add(mk('hovercraft','Hovercraft','vehicles',2,false,9,[
+  PG('0,300 80,286 160,308 240,296 320,288 400,298 400,400 0,400',200,352,5),
+  EE(200,250,120,45,1),
+  RR(120,210,160,50,2,8),
+  CC(200,190,34,3),
+  PG('260,210 320,180 330,210',296,200,4),
+  RR(140,290,120,16,6,6),
+  CC(330,80,16,7), CC(80,90,13,7)
+],'<circle cx="200" cy="190" r="10" fill="#263238"/><circle cx="200" cy="190" r="4" fill="#fff"/>'));
+add(mk('towtruck','Tow Truck','vehicles',3,false,3,[
+  RR(0,330,400,70,6),
+  RR(60,250,180,80,1,8),
+  RR(240,210,80,120,2,8),
+  RR(260,230,40,40,3,6),
+  RR(300,210,16,60,4),
+  RR(300,200,50,14,4),
+  PG('70,250 160,250 150,200 80,200',116,228,5),
+  RC(120,300,28,7,120,282), RC(120,300,13,3,120,300),
+  RC(280,300,28,7,280,282), RC(280,300,13,3,280,300),
+  CC(330,80,16,6)
+],''));
+
+/* ---- FOOD ---- */
+add(mk('croissant','Croissant','food',1,false,7,[
+  EE(200,352,130,18,6),
+  EE(200,220,110,70,1),
+  EE(130,250,45,35,2,-30),
+  EE(270,250,45,35,2,30),
+  EE(200,180,55,30,3),
+  CC(200,220,16,4),
+  CC(330,90,18,5), CC(70,100,14,5)
+],''));
+add(mk('waffle','Waffle','food',2,false,5,[
+  EE(200,350,130,18,6),
+  RR(120,150,160,160,1,10),
+  RR(140,170,40,40,2,7), RR(180,170,40,40,2,7), RR(220,170,40,40,2,7),
+  RR(140,210,40,40,2,7), RR(180,210,40,40,2,7), RR(220,210,40,40,2,7),
+  RR(140,250,40,40,2,7), RR(180,250,40,40,2,7), RR(220,250,40,40,2,7),
+  EE(200,140,45,18,3),
+  CC(150,130,12,4), CC(250,130,12,4),
+  CC(330,90,16,5)
+],''));
+add(mk('bobatea','Bubble Tea','food',2,false,8,[
+  PG('140,150 260,150 240,340 160,340',200,250,1),
+  RR(130,130,140,22,2,8),
+  RR(220,60,14,90,3,-15),
+  EE(200,220,42,26,4),
+  CC(170,290,13,5), CC(200,305,13,5), CC(230,290,13,5), CC(185,265,11,5), CC(215,265,11,5),
+  CC(330,80,16,6), CC(70,90,14,6)
+],'<circle cx="182" cy="196" r="4" fill="#263238"/><circle cx="218" cy="196" r="4" fill="#263238"/><path d="M190,210 Q200,216 210,210" fill="none" stroke="#263238" stroke-width="3" stroke-linecap="round"/>'));
+add(mk('ramen','Ramen Bowl','food',2,false,2,[
+  PG('110,230 290,230 260,330 140,330',200,282,1),
+  EE(200,230,90,26,2),
+  RR(140,200,120,18,3,7),
+  CC(160,230,18,4), CC(240,230,18,4),
+  RR(280,120,12,110,5,-20),
+  RR(300,130,12,110,5,-20),
+  CC(200,180,16,6),
+  CC(330,90,16,7)
+],'<circle cx="200" cy="230" r="6" fill="#263238"/><path d="M150,200 C160,190 180,190 190,200 M210,200 C220,190 240,190 250,200" fill="none" stroke="#263238" stroke-width="3" stroke-linecap="round" opacity=".5"/>'));
+add(mk('dumpling','Dumplings','food',1,false,4,[
+  EE(200,350,130,18,6),
+  EE(140,240,60,45,1),
+  EE(260,240,60,45,1),
+  EE(200,290,60,45,2),
+  EE(140,220,30,16,3),
+  EE(260,220,30,16,3),
+  EE(200,272,30,16,3),
+  CC(330,90,18,5), CC(70,100,14,5)
+],'<path d="M120,240 C140,220 160,220 180,240 M240,240 C260,220 280,220 300,240 M180,290 C200,272 220,272 240,290" fill="none" stroke="#263238" stroke-width="3" stroke-linecap="round" opacity=".5"/>'));
+add(mk('honeypot','Honey Pot','food',2,false,1,[
+  EE(200,350,120,16,6),
+  EE(200,270,75,60,1),
+  EE(200,210,55,22,2),
+  RR(240,120,14,60,3,-15),
+  CC(258,110,14,4),
+  EE(120,120,30,20,5,-20),
+  EE(290,140,26,18,5,15),
+  CC(330,300,14,5)
+],'<circle cx="180" cy="260" r="5" fill="#263238"/><circle cx="220" cy="260" r="5" fill="#263238"/><path d="M190,278 Q200,284 210,278" fill="none" stroke="#263238" stroke-width="3" stroke-linecap="round"/><path d="M200,232 C190,250 210,250 200,232" fill="#FFD93D" opacity=".8"/>'));
+
+/* ---- NATURE ---- */
+add(mk('daisy','Daisy','nature',1,false,3,[
+  RR(0,340,400,60,5),
+  CC(200,150,42,1),
+  CC(200,84,30,2), CC(200,216,30,2), CC(134,150,30,2), CC(266,150,30,2),
+  CC(153,103,30,3), CC(247,103,30,3), CC(153,197,30,3), CC(247,197,30,3),
+  RR(192,190,16,150,4),
+  EE(160,300,34,16,4,-25), EE(240,300,34,16,4,25),
+  CC(330,80,18,6), CC(70,90,14,6)
+],'<circle cx="188" cy="146" r="4" fill="#263238"/><circle cx="212" cy="146" r="4" fill="#263238"/><path d="M190,160 Q200,166 210,160" fill="none" stroke="#263238" stroke-width="3" stroke-linecap="round"/>'));
+add(mk('rose','Red Rose','nature',2,false,1,[
+  RR(0,0,400,400,6),
+  EE(200,340,80,40,2),
+  RR(192,220,16,120,3),
+  CC(200,150,62,1),
+  CC(200,150,38,4),
+  CC(200,150,18,5),
+  EE(150,280,30,16,3,-25), EE(250,280,30,16,3,25),
+  CC(90,90,16,6), CC(320,80,14,6)
+],'<circle cx="186" cy="146" r="4" fill="#263238"/><circle cx="214" cy="146" r="4" fill="#263238"/><path d="M190,160 Q200,166 210,160" fill="none" stroke="#263238" stroke-width="3" stroke-linecap="round"/>'));
+add(mk('palmtree','Palm Tree','nature',2,false,4,[
+  PG('0,340 80,326 160,348 240,334 320,350 400,338 400,400 0,400',200,368,5),
+  PG('200,340 180,200 220,200',200,280,1),
+  PG('200,200 90,150 60,190 140,210',140,190,2),
+  PG('200,200 310,150 340,190 260,210',260,190,2),
+  PG('200,200 130,110 110,160 170,190',160,160,3),
+  PG('200,200 270,110 290,160 230,190',240,160,3),
+  CC(180,210,14,4), CC(220,210,14,4), CC(200,225,14,4),
+  CC(330,80,18,6)
+],''));
+add(mk('mountain','Mountains','nature',2,false,7,[
+  RR(0,0,400,400,6),
+  PG('0,340 100,180 200,340',100,300,1),
+  PG('140,340 260,140 380,340',260,280,2),
+  PG('100,180 130,220 70,220',100,206,3),
+  PG('260,140 295,185 225,185',260,168,3),
+  PG('0,340 400,340 400,400 0,400',200,372,4),
+  EE(200,330,60,22,5),
+  CC(330,80,20,7)
+],''));
+add(mk('beach','Beach Day','nature',2,false,8,[
+  RR(0,0,400,200,5),
+  RR(0,200,400,200,6),
+  CC(70,80,30,1),
+  PG('200,200 260,120 320,200',260,168,2),
+  RR(256,200,10,70,3),
+  EE(200,320,55,30,4),
+  CC(120,300,18,7),
+  EE(330,300,30,20,2,-20)
+],''));
+
+/* ---- OCEAN ---- */
+add(mk('sandcastle','Sandcastle','ocean',2,false,2,[
+  PG('0,330 80,316 160,336 240,322 320,338 400,326 400,400 0,400',200,366,5),
+  RR(140,220,120,120,1,8),
+  RR(110,260,50,80,1,8),
+  RR(240,260,50,80,1,8),
+  PG('110,260 135,210 160,260',135,244,2),
+  PG('240,260 265,210 290,260',265,244,2),
+  PG('140,220 200,150 260,220',200,196,3),
+  RR(196,150,8,40,4),
+  PG('204,150 232,158 204,166',216,158,6),
+  CC(330,90,16,7), CC(70,100,13,7)
+],''));
+add(mk('surfboard','Surfboard','ocean',1,false,9,[
+  PG('0,300 80,286 160,308 240,296 320,288 400,298 400,400 0,400',200,352,5),
+  EE(200,180,60,120,1,-20),
+  EE(200,180,60,40,2,-20),
+  EE(200,230,60,35,3,-20),
+  CC(330,80,18,4), CC(80,90,14,4),
+  CC(120,330,14,6), CC(300,340,12,6)
+],''));
+add(mk('pearlclam','Pearl Clam','ocean',2,false,10,[
+  RR(0,0,400,400,6),
+  EE(200,360,180,30,5),
+  EE(200,250,110,70,1),
+  EE(200,250,80,45,2),
+  CC(200,250,26,3),
+  CC(120,330,16,4), CC(280,330,16,4),
+  CC(90,90,13,7), CC(320,80,12,7), CC(330,320,12,7)
+],'<circle cx="200" cy="250" r="8" fill="#fff" opacity=".9"/>'));
+add(mk('goldenwhale','Golden Whale','ocean',4,true,0,[
+  RR(0,0,400,400,6),
+  EE(200,240,130,80,1),
+  PG('310,240 370,190 360,260',338,228,2),
+  PG('140,300 110,340 160,320',134,318,2),
+  CC(140,210,16,3),
+  EE(200,280,60,26,4),
+  CC(200,170,20,5),
+  PG('190,130 200,108 210,130 200,142',200,126,5),
+  CC(80,90,14,7), CC(330,80,12,7)
+],'<circle cx="140" cy="210" r="5" fill="#263238"/><circle cx="142" cy="208" r="1.8" fill="#fff"/><path d="M120,240 C110,232 110,222 120,214" fill="none" stroke="#263238" stroke-width="3" stroke-linecap="round"/>'));
+
+/* ---- SPACE ---- */
+add(mk('nebula','Nebula','space',3,false,9,[
+  RR(0,0,400,400,7),
+  EE(140,180,90,60,1),
+  EE(260,230,100,70,2),
+  EE(200,300,80,50,3),
+  CC(200,200,30,4),
+  PG('80,80 86,96 103,96 89,106 94,123 80,112 66,123 71,106 57,96 74,96',80,101,5),
+  PG('330,120 336,136 353,136 339,146 344,163 330,152 316,163 321,146 307,136 324,136',330,141,5),
+  PG('300,300 305,313 319,313 308,321 312,335 300,327 288,335 292,321 281,313 295,313',300,320,6),
+  CC(140,320,12,5), CC(60,240,10,5)
+],''));
+add(mk('rover','Moon Rover','space',3,false,3,[
+  RR(0,0,400,400,6),
+  PG('0,320 80,306 160,326 240,312 320,328 400,316 400,400 0,400',200,362,5),
+  RR(120,220,160,70,1,10),
+  RC(150,310,34,7,150,290), RC(150,310,15,3,150,310),
+  RC(250,310,34,7,250,290), RC(250,310,15,3,250,310),
+  RR(230,170,14,50,2),
+  CC(237,160,14,3),
+  RR(150,190,60,30,4,6),
+  CC(330,80,18,7), CC(80,90,14,7)
+],''));
+
+/* ---- PATTERNS ---- */
+add(mk('zigzag','Zigzag Fun','patterns',1,false,6,[
+  RR(0,0,400,400,7),
+  PG('0,60 60,20 120,60 180,20 240,60 300,20 360,60 400,30 400,90 360,120 300,80 240,120 180,80 120,120 60,80 0,120',200,70,1),
+  PG('0,170 60,130 120,170 180,130 240,170 300,130 360,170 400,140 400,200 360,230 300,190 240,230 180,190 120,230 60,190 0,230',200,180,2),
+  PG('0,280 60,240 120,280 180,240 240,280 300,240 360,280 400,250 400,310 360,340 300,300 240,340 180,300 120,340 60,300 0,340',200,290,3),
+  CC(60,360,14,4), CC(200,360,14,5), CC(340,360,14,6)
+],''));
+add(mk('spiral','Rainbow Spiral','patterns',2,false,0,[
+  RR(0,0,400,400,7),
+  RC(200,200,150,1,200,65),
+  RC(200,200,120,2,200,95),
+  RC(200,200,90,3,200,125),
+  RC(200,200,60,4,200,155),
+  RC(200,200,32,5,200,184),
+  CC(200,200,14,6),
+  PG('60,60 66,76 83,76 69,86 74,103 60,92 46,103 51,86 37,76 54,76',60,81,1),
+  PG('340,340 346,356 363,356 349,366 354,383 340,372 326,383 331,366 317,356 334,356',340,361,2)
+],''));
+
+/* ---- MORE FOOD & NATURE ---- */
+add(mk('peach','Peach','food',1,false,1,[
+  CC(200,210,95,1),
+  CC(200,210,45,2),
+  EE(200,210,18,26,3),
+  EE(240,120,40,16,4,-30),
+  RR(200,120,10,30,5),
+  CC(330,90,16,6), CC(70,100,14,6)
+],''));
+add(mk('mango','Mango','food',1,false,7,[
+  EE(200,220,85,110,1,-15),
+  EE(250,150,40,18,2,-30),
+  RR(235,120,10,30,3),
+  EE(200,250,45,60,4,-15),
+  CC(330,90,16,5), CC(70,100,14,5)
+],''));
+add(mk('kiwi','Kiwi','food',2,false,8,[
+  CC(200,200,100,1),
+  RC(200,200,72,2,200,140),
+  RC(200,200,50,3,200,160),
+  EE(200,200,16,10,4),
+  EE(280,120,34,14,5,-25),
+  CC(330,320,14,6), CC(70,320,13,6)
+],''));
+add(mk('coconut','Coconut','food',2,false,4,[
+  PG('0,330 80,316 160,336 240,322 320,338 400,326 400,400 0,400',200,366,5),
+  CC(200,230,85,1),
+  RC(200,230,55,2,200,180),
+  RR(230,130,12,70,3,-20),
+  PG('200,130 250,110 260,130 210,150',232,130,4),
+  CC(330,90,16,6), CC(70,100,13,6)
+],''));
+
+/* ---- SPECIAL (premium, ad-unlock) ---- */
+add(mk('crystalcastle','Crystal Castle','patterns',4,true,9,[
+  RR(0,0,400,400,7),
+  PG('0,340 400,340 400,400 0,400',200,372,6),
+  PG('120,340 120,180 170,120 220,180 220,340',170,260,1),
+  PG('240,340 240,200 280,140 320,200 320,340',280,270,2),
+  PG('170,120 185,80 200,120',185,104,3),
+  PG('280,140 292,104 304,140',292,126,3),
+  RR(160,280,40,60,4,6), RR(260,290,40,50,4,6),
+  CC(90,90,14,5), CC(330,80,12,5), CC(330,320,12,5)
+],'<g fill="#FFFFFF" opacity=".8"><circle cx="60" cy="60" r="3"/><circle cx="350" cy="60" r="3"/><circle cx="60" cy="150" r="2.6"/><circle cx="350" cy="150" r="2.6"/></g>'));
+
 /* ================= Build the full catalog =================
    13 hand-drawn classics + every generated subject above.
    Each generated picture is a unique subject — nothing is a
@@ -4087,12 +4578,12 @@ function tone(freq, dur, type, vol, when){
   o.connect(g); g.connect(ctx.destination);
   o.start(tm); o.stop(tm+dur+0.05);
 }
-function sndTap(){ tone(660,.09,'sine',.12); }
-function sndGood(){ tone(523,.12,'sine',.14); tone(784,.16,'sine',.14,.07); }
-function sndWrong(){ tone(160,.18,'sawtooth',.06); }
-function sndWin(){ [523,659,784,1047,784,1047].forEach(function(f,i){ tone(f,.22,'triangle',.15,i*0.11); }); }
-function sndUnlock(){ [392,523,659,784,1047].forEach(function(f,i){ tone(f,.15,'triangle',.13,i*0.07); }); }
-function sndPop(){ tone(520,.07,'triangle',.12); tone(784,.09,'triangle',.10,.045); }
+function sndTap(){ if(playSfx('tap')) return; tone(660,.09,'sine',.12); }
+function sndGood(){ if(playSfx('good')) return; tone(523,.12,'sine',.14); tone(784,.16,'sine',.14,.07); }
+function sndWrong(){ if(playSfx('wrong')) return; tone(160,.18,'sawtooth',.06); }
+function sndWin(){ if(playSfx('win')) return; [523,659,784,1047,784,1047].forEach(function(f,i){ tone(f,.22,'triangle',.15,i*0.11); }); }
+function sndUnlock(){ if(playSfx('unlock')) return; [392,523,659,784,1047].forEach(function(f,i){ tone(f,.15,'triangle',.13,i*0.07); }); }
+function sndPop(){ if(playSfx('pop')) return; tone(520,.07,'triangle',.12); tone(784,.09,'triangle',.10,.045); }
 function sndSparkle(){ tone(1318,.10,'sine',.08); tone(1568,.15,'sine',.08,.06); }
 function buzz(){ if(vibrationOn && navigator.vibrate) navigator.vibrate(18); }
 
@@ -4105,6 +4596,50 @@ function buzz(){ if(vibrationOn && navigator.vibrate) navigator.vibrate(18); }
    player's first touch; the Settings switch turns it on/off
    and the choice is saved.
 ============================================================ */
+/* v15 — REAL MUSIC + SFX (original tracks composed & synthesized
+   for RangBharo, MP3 files in assets/music + assets/sfx — no
+   copyrighted audio, safe for Uptodown + monetisation). The tracks
+   play in a looped playlist; if a file cannot load, the game falls
+   back to the live WebAudio melody below, so music never breaks. */
+var MUSIC_TRACKS=['assets/music/rainbow-morning.mp3','assets/music/colourful-dreams.mp3','assets/music/happy-painting.mp3'];
+var musicAudio=null, musicTrackIdx=0, musicFileOK=true;
+var sfxCache={}, sfxFailed={};
+function playSfx(name){
+  if(!soundOn || sfxFailed[name]) return false;
+  try{
+    var a=sfxCache[name];
+    if(!a){
+      a=new Audio('assets/sfx/'+name+'.mp3'); a.preload='auto'; a.volume=0.9;
+      a.addEventListener('error', function(){ sfxFailed[name]=true; });
+      sfxCache[name]=a;
+    }
+    a.currentTime=0;
+    var pr=a.play();
+    if(pr && pr.catch) pr.catch(function(){});
+    return true;
+  }catch(e){ sfxFailed[name]=true; return false; }
+}
+function startFileMusic(){
+  if(!musicOn) return;
+  try{
+    if(!musicAudio){
+      musicAudio=new Audio();
+      musicAudio.preload='auto'; musicAudio.volume=0.45;
+      musicAudio.addEventListener('ended', function(){
+        musicTrackIdx=(musicTrackIdx+1)%MUSIC_TRACKS.length;
+        try{ musicAudio.src=MUSIC_TRACKS[musicTrackIdx]; musicAudio.play().catch(function(){}); }catch(e){}
+      });
+      musicAudio.addEventListener('error', function(){
+        musicFileOK=false; musicAudio=null; startMusic();
+      });
+      musicAudio.src=MUSIC_TRACKS[musicTrackIdx];
+    }
+    if(musicAudio.paused){
+      var pr=musicAudio.play();
+      if(pr && pr.catch) pr.catch(function(){ musicFileOK=false; musicAudio=null; startMusic(); });
+    }
+  }catch(e){ musicFileOK=false; musicAudio=null; }
+}
 var musicTimer=null, musicGain=null, musicStep=0, musicNextTime=0;
 var MUS_CHORDS=[
   [261.63,329.63,392.00],
@@ -4151,7 +4686,9 @@ function scheduleMusic(){
   }
 }
 function startMusic(){
-  if(!musicOn || musicTimer) return;
+  if(!musicOn) return;
+  if(musicFileOK){ startFileMusic(); return; }
+  if(musicTimer) return;
   var ctx=ensureCtx(); if(!ctx) return;
   if(!musicGain){ musicGain=ctx.createGain(); musicGain.gain.value=0.9; musicGain.connect(ctx.destination); }
   musicStep=0; musicNextTime=ctx.currentTime+0.08;
@@ -4159,6 +4696,7 @@ function startMusic(){
   musicTimer=setInterval(scheduleMusic, 200);
 }
 function stopMusic(){
+  if(musicAudio){ try{ musicAudio.pause(); }catch(e){} }
   if(musicTimer){ clearInterval(musicTimer); musicTimer=null; }
 }
 function syncMusicUI(){
@@ -4167,7 +4705,7 @@ function syncMusicUI(){
 document.addEventListener('pointerdown', function(){ if(musicOn) startMusic(); });
 document.addEventListener('visibilitychange', function(){
   if(document.hidden) stopMusic();
-  else if(musicOn && audioCtx) startMusic();
+  else if(musicOn) startMusic();
 });
 
 var toastTimer=null;
@@ -4674,13 +5212,33 @@ function renderGallery(){
   renderStats();
 }
 
+/* v15 — category scene banner: the big artwork above the gallery
+   shows the world of the Up Next picture (animals, ocean, space,
+   food, nature; the art-studio picture covers patterns/vehicles).
+   The image is lazy (loading="lazy") and its src only changes when
+   the world changes, so it never re-downloads on re-render. */
+var CAT_ART={
+  animals:'assets/animals-bg.jpg', ocean:'assets/ocean-bg.jpg',
+  space:'assets/space-bg.jpg', food:'assets/food-bg.jpg',
+  nature:'assets/nature-bg.jpg', patterns:'assets/gallery-bg.jpg',
+  vehicles:'assets/gallery-bg.jpg', all:'assets/home-bg.jpg'
+};
+var catArtCurrent='';
+function updateCatArt(cat){
+  var img=$('catArtImg'); if(!img) return;
+  var src=CAT_ART[cat]||CAT_ART.all;
+  if(catArtCurrent===src) return;
+  catArtCurrent=src; img.src=src;
+  img.alt='RangBharo — '+(cat==='all'?'colourful world':cat+' world');
+}
+
 /* Featured "Up Next" card — the home screen's main activity:
    the next picture waiting to be colored, shown in full color
    with one big Play button, like the big color-by-number apps. */
 function renderFeatured(){
   var box=$('featuredCard'); if(!box) return;
   var p=nextLevelToPlay();
-  if(!p || isAdLocked(p) || !isLevelUnlocked(p)){ box.classList.add('hidden'); box.innerHTML=''; box.onclick=null; return; }
+  if(!p || isAdLocked(p) || !isLevelUnlocked(p)){ box.classList.add('hidden'); box.innerHTML=''; box.onclick=null; updateCatArt('all'); return; }
   box.classList.remove('hidden');
   box.innerHTML =
     '<div class="f-thumb"></div>'+
@@ -4690,6 +5248,7 @@ function renderFeatured(){
     '<span class="f-play">▶ '+t('play')+'</span>';
   box.querySelector('.f-thumb').appendChild(buildThumb(p, true));
   box.onclick=function(){ startPuzzle(p.id); };
+  updateCatArt(p.cat);
 }
 
 /* ============================================================ Game */
