@@ -23,6 +23,7 @@ jobs:
 
       - name: Add Android platform (first run only)
         run: |
+          rm -f capacitor.config.ts
           if [ ! -d android ]; then npx cap add android; fi
           npx cap sync android
 
