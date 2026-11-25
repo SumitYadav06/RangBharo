@@ -55,18 +55,39 @@ jobs:
           from PIL import Image
           import pathlib
           src = Image.open('www/icon.png').convert('RGBA')
+          # Safe-zone icon: art covers 72% of the canvas on a transparent
+          # background. A full-bleed square loses 21.5% of its pixels to a
+          # circle mask (corners + edges cut off); at 72% the whole art
+          # stays visible under circle and squircle masks. Build one
+          # 432px master (adaptive-foreground size) with LANCZOS and
+          # derive every density from it, so the foreground is never an
+          # upscaled 192px image (that blur was the low-quality look).
+          PAD = 0.72
+          master = Image.new('RGBA', (432, 432), (0, 0, 0, 0))
+          side = int(432 * PAD)
+          art = src.resize((side, side), Image.LANCZOS)
+          master.paste(art, ((432 - side) // 2, (432 - side) // 2))
           sizes = {'mipmap-mdpi': 48, 'mipmap-hdpi': 72, 'mipmap-xhdpi': 96, 'mipmap-xxhdpi': 144, 'mipmap-xxxhdpi': 192}
           base = pathlib.Path('android/app/src/main/res')
           for folder, size in sizes.items():
               d = base / folder
               if not d.exists():
                   continue
-              img = src.resize((size, size), Image.LANCZOS)
-              for name in ('ic_launcher.png', 'ic_launcher_round.png', 'ic_launcher_foreground.png'):
+              img = master.resize((size, size), Image.LANCZOS)
+              for name in ('ic_launcher.png', 'ic_launcher_round.png'):
                   p = d / name
                   if p.exists():
                       img.save(p)
                       print('replaced', p)
+              # Adaptive foreground is 2.25x the legacy size
+              # (108/162/216/324/432): generate it at its native size
+              # from the master, never upscaled from a small image.
+              fg_size = size * 9 // 4
+              fg = master.resize((fg_size, fg_size), Image.LANCZOS)
+              p = d / 'ic_launcher_foreground.png'
+              if p.exists():
+                  fg.save(p)
+                  print('replaced', p)
           EOF
 
       - name: Set up JDK 17
