@@ -2,14 +2,16 @@
   "name": "rangbharo",
   "version": "1.0.0",
   "private": true,
-  "description": "RangBharo \u2014 Color by Number \u2014 196 pictures, ads-only, free game",
+  "description": "RangBharo — Color by Number — 196 pictures, ads-only, free game",
   "scripts": {
     "android": "npx cap open android",
     "build": "npx cap sync android"
   },
   "dependencies": {
     "@capacitor/android": "^6.0.0",
-    "@capacitor/core": "^6.0.0"
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/local-notifications": "^6.0.0",
+    "@capacitor-community/admob": "^6.2.0"
   },
   "devDependencies": {
     "@capacitor/cli": "^6.0.0"
