@@ -302,6 +302,13 @@ public class UnityAdsPlugin extends Plugin {
                     }
 
                     @Override
+                    public void onBannerShown(BannerView bannerAdView) {
+                        // Banner became visible; nothing to report to JS.
+                        // Required by BannerView.IListener in Unity Ads 4.18.0
+                        // (missing it failed Dripply run #21's Java compile).
+                    }
+
+                    @Override
                     public void onBannerFailedToLoad(BannerView bannerAdView,
                             BannerErrorInfo errorInfo) {
                         destroyBannerLocked();
