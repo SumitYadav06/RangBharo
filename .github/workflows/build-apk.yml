@@ -24,6 +24,29 @@ jobs:
       - name: Install Capacitor
         run: npm install @capacitor/cli @capacitor/core @capacitor/android typescript @capacitor/local-notifications
 
+      - name: Stamp app version (version-check)
+        # The in-app version check compares APP_VERSION (this build's
+        # run number = versionCode) against www/version.json's
+        # "latest". The repo file keeps the placeholder so node
+        # --check still passes and website previews never prompt.
+        # This step runs on the CI checkout copy only and fails
+        # loudly if the placeholder is missing or not replaced.
+        run: |
+          if ! grep -q '"__APP_VERSION__"' www/index.html; then
+            echo "ERROR: APP_VERSION placeholder not found in www/index.html"
+            exit 1
+          fi
+          sed -i "s/\"__APP_VERSION__\"/${{ github.run_number }}/g" www/index.html
+          if grep -q '__APP_VERSION__' www/index.html; then
+            echo "ERROR: APP_VERSION placeholder was not fully replaced"
+            exit 1
+          fi
+          if ! grep -q "APP_VERSION = ${{ github.run_number }}" www/index.html; then
+            echo "ERROR: stamped APP_VERSION not found in www/index.html"
+            exit 1
+          fi
+          echo "APP_VERSION stamped to ${{ github.run_number }}"
+
       - name: Add Android platform (first run only)
         run: |
           rm -f capacitor.config.ts
