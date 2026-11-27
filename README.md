@@ -73,26 +73,37 @@ Open `www/index.html` in a browser — no build step needed for the web version.
 ## Build the Android APK (GitHub Actions)
 
 Every push to `main` runs `.github/workflows/build-apk.yml` and produces a
-debug APK (`rangbharo-debug-apk`). The workflow also applies the final
-launcher icon and writes the AdMob App ID into the Android manifest.
+debug APK (`rangbharo-debug-apk`). The workflow also applies the final launcher icon and verifies the Unity Ads wiring (plugin registered, Game ID + placements present).
 A signed release APK is a separate later step (keystore + signing config
 are not wired into this workflow yet — do not promise a release APK
 from this repo as it stands).
 
-## Ads — AdMob (real IDs wired in)
+## Ads — Unity Ads (since 2026-11-27; the previous network was fully removed)
 
 Earning is ads-only (video ads, no pop-ups, no paid Premium):
 
-- App Open ad — once, when the app opens (note: the current AdMob plugin
-  has no App Open format, so this slot is still a demo overlay until a
-  plugin with App Open support is added)
-- Banner — Home screen only, never while playing
-- Interstitial — after every 3rd level
-- Rewarded video — only when the player taps Watch Ad (hint / unlock)
+- Banner — Home screen only, never while playing (real native banner,
+  320×50 pinned to the bottom). No reserved empty ad space: there is no
+  placeholder box on Home — the banner only takes space when a real
+  banner is actually showing.
+- Interstitial — after every 3rd finished picture (real ad first,
+  3-second demo overlay only as fallback)
+- Rewarded video — only when the player taps Watch Ad (Special unlock /
+  early unlock / +3 hints); the reward is granted only when Unity
+  reports the ad watched to the end (COMPLETED)
+- No App Open: Unity Ads has no app-open format, so there is no
+  app-open ad slot at all (nothing shows on cold start)
 
-Real RangBharo AdMob IDs are in the code (`ADMOB_CONFIG` in
-`www/index.html`) and the game talks to the real AdMob SDK through
-`@capacitor-community/admob` v6 (`window.AdMobNative`). Real ads only run
-in the APK after it is built and uploaded; the web preview shows demo
-overlays instead. Each game has its own AdMob app and its own IDs; IDs
-from another game do not work here.
+**The IDs in `www/index.html` are the real RangBharo Unity IDs**
+(Android Game ID `800457125`, placements `BP_Rewarded_Android`,
+`BP_Interstitial_Android`, `BP_Banner_Android`, created 2026-11-27 —
+no store URL was needed at signup). Each game has its own Unity app
+and its own IDs; IDs from another game do not work here.
+
+**Integration:** Unity Ads Android SDK 4.18.0 through a minimal local
+Capacitor plugin in `plugins/unity-ads/` (no maintained npm plugin for
+Unity Ads exists, so the plugin is written here: `initialize` / load /
+show + `BannerView`, wrapped in JS as `window.UnityAdsNative`). The
+workflow verifies the wiring on every build (plugin registered, Game
+ID + 3 placements present, no old-network IDs) and fails the build
+otherwise. Release build uses `testMode: false`.
