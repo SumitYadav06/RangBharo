@@ -950,6 +950,20 @@ body.net-gated *{animation-play-state:paused !important}
   </div>
 </div>
 
+<!-- ================= UPDATE AVAILABLE ================= -->
+<div class="overlay hidden" id="updateOverlay" style="z-index:60;">
+  <div class="win-card">
+    <div class="crown-big">⬆️</div>
+    <h2>Naya version aa gaya hai — Update karo</h2>
+    <p>A new version is available — Update now</p>
+    <p style="font-size:14px;">Purana version chal raha hai. Naya version download karo — naye pictures aur behtar game milega.</p>
+    <div class="win-actions">
+      <button class="big-btn gold" id="updateNowBtn">⬇️ Update karo</button>
+      <button class="big-btn ghost" id="updateLaterBtn">Baad me / Later</button>
+    </div>
+  </div>
+</div>
+
 <!-- ================= ZOOM LENS (MAGNIFIER) ================= -->
 <div class="zoom-lens hidden" id="zoomLens" role="dialog" aria-label="Zoom lens">
   <div class="zoom-lens-head">
@@ -4807,6 +4821,64 @@ function loadExtraPictures(){
     }).catch(function(){ done=true; clearTimeout(to); });
   }catch(e){ /* offline / no fetch — bundled pictures only */ }
 }
+
+/* ============================================================
+   v15.2 — APP VERSION CHECK ("Old version — Update karo")
+   Old APKs cannot be changed retroactively, so the check lives
+   in NEW builds: CI stamps APP_VERSION to the build's run number
+   (= versionCode) and the app compares it with www/version.json
+   ("latest") fetched from the public repo on launch.
+   * Unstamped build (website preview): APP_VERSION is a string,
+     never a number — no prompt, play normally.
+   * Fetch fails / bad JSON / bad shape: silently ignored, the
+     game keeps running on its bundled pictures — the check can
+     never break the game.
+   * APP_VERSION < latest: one designed full-screen modal per
+     launch, with Update (opens the release APK link) and
+     "Baad me / Later" (dismisses for this session only).
+============================================================ */
+var APP_VERSION = "__APP_VERSION__";
+var VERSION_URL = 'https://raw.githubusercontent.com/SumitYadav06/RangBharo/main/www/version.json';
+var updateShown = false;
+function validVersionInfo(d){
+  if(!d || typeof d!=='object') return false;
+  if(typeof d.latest!=='number' || !isFinite(d.latest)) return false;
+  if(typeof d.apkUrl!=='string' || d.apkUrl.indexOf('https://github.com/SumitYadav06/')!==0) return false;
+  return true;
+}
+function showUpdateModal(apkUrl){
+  if(updateShown) return; updateShown = true;
+  try{
+    var ov = $('updateOverlay'); if(!ov) return;
+    var go = $('updateNowBtn'), later = $('updateLaterBtn');
+    if(go) go.onclick = function(){
+      var w = null;
+      try{ w = window.open(apkUrl, '_blank'); }catch(e){ w = null; }
+      if(!w){ try{ window.location.href = apkUrl; }catch(e2){} }
+    };
+    if(later) later.onclick = function(){ ov.classList.add('hidden'); };
+    ov.classList.remove('hidden');
+  }catch(e){ /* modal must never break the game */ }
+}
+function checkAppVersion(){
+  try{
+    if(typeof APP_VERSION!=='number') return;
+    if(typeof fetch!=='function') return;
+    var done=false;
+    var to=setTimeout(function(){ if(!done){ done=true; } }, 4000);
+    fetch(VERSION_URL, {cache:'no-store'}).then(function(res){
+      if(done) return null;
+      if(!res || !res.ok) return null;
+      return res.json();
+    }).then(function(data){
+      if(done || !data) return;
+      done=true; clearTimeout(to);
+      if(!validVersionInfo(data)) return;
+      if(APP_VERSION < data.latest) showUpdateModal(data.apkUrl);
+    }).catch(function(){ done=true; clearTimeout(to); });
+  }catch(e){ /* offline / no fetch — play normally, no prompt */ }
+}
+
 var activeCat = 'all';
 var diffFilter = 'all';
 var searchText = '';
@@ -6285,6 +6357,8 @@ applyI18n();
    the bundled 214 pictures are already on screen; new ones merge
    in and re-render the gallery when the fetch succeeds. */
 loadExtraPictures();
+/* v15.2 — old-version prompt (silent when offline / preview). */
+checkAppVersion();
 /* Start the real Unity SDK (native APK only; web = no-op). */
 if(window.UnityAdsNative) window.UnityAdsNative.init();
 /* No App Open format in Unity Ads — nothing shows on cold start. */
