@@ -22,7 +22,7 @@ jobs:
           node-version: '20'
 
       - name: Install Capacitor
-        run: npm install @capacitor/cli @capacitor/core @capacitor/android typescript @capacitor/local-notifications @capacitor-community/admob@6.2.0
+        run: npm install @capacitor/cli @capacitor/core @capacitor/android typescript @capacitor/local-notifications
 
       - name: Add Android platform (first run only)
         run: |
@@ -30,25 +30,63 @@ jobs:
           if [ ! -d android ]; then npx cap add android; fi
           npx cap sync android
 
-      - name: Configure AdMob App ID
-        # The AdMob SDK refuses to initialise without this meta-data.
-        # App ID is public-safe (it only identifies the app; it cannot
-        # move money or open the AdMob account).
+      - name: Raise minSdk to 26 (Unity Ads plugin needs 26)
+        # The Unity Ads plugin declares minSdkVersion 26; the generated
+        # app project resolves to 22, and the manifest merger fails the
+        # build ("uses-sdk:minSdkVersion 22 cannot be smaller than
+        # version 26"). Android 8.0+ (API 26) covers ~all active phones.
         run: |
           python3 - << 'EOF'
-          import pathlib
-          app_id = 'ca-app-pub-2948876721824340~4162645161'
-          manifest = pathlib.Path('android/app/src/main/AndroidManifest.xml')
-          s = manifest.read_text()
-          if 'com.google.android.gms.ads.APPLICATION_ID' not in s:
-              s = s.replace('</application>', '    <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="@string/admob_app_id"/>\n    </application>', 1)
-              manifest.write_text(s)
-          strings = pathlib.Path('android/app/src/main/res/values/strings.xml')
-          t = strings.read_text()
-          if 'admob_app_id' not in t:
-              t = t.replace('</resources>', '    <string name="admob_app_id">' + app_id + '</string>\n</resources>', 1)
-              strings.write_text(t)
-          print('admob configured')
+          import pathlib, re, sys
+          patched = []
+          for fname in ('android/variables.gradle', 'android/app/build.gradle'):
+              p = pathlib.Path(fname)
+              if not p.exists():
+                  continue
+              t = p.read_text()
+              t2, n1 = re.subn(r'minSdkVersion\s*=\s*\d+', 'minSdkVersion = 26', t)
+              t2, n2 = re.subn(r'minSdkVersion\s+\d+', 'minSdkVersion 26', t2)
+              t2, n3 = re.subn(r'\bminSdk\s*=\s*\d+', 'minSdk = 26', t2)
+              t2, n4 = re.subn(r'\bminSdk\s+\d+', 'minSdk 26', t2)
+              if n1 + n2 + n3 + n4:
+                  p.write_text(t2)
+                  patched.append((fname, n1 + n2 + n3 + n4))
+          if not patched:
+              print('ERROR: no minSdk line found to raise in android project')
+              sys.exit(1)
+          for f, n in patched:
+              print('raised minSdk to 26 in', f, '(%d replacement%s)' % (n, 's' if n > 1 else ''))
+          EOF
+
+      - name: Verify Unity Ads wiring
+        # Fail loudly if the Unity plugin did not register with
+        # Capacitor, or an old ad-network ID is still in the shipped
+        # code. Unity needs no manifest meta-data: the Game ID is
+        # passed to UnityAds.initialize() at runtime from JS.
+        run: |
+          python3 - << 'EOF'
+          import json, pathlib, sys
+          fails = []
+          plug = pathlib.Path('android/app/src/main/assets/capacitor.plugins.json')
+          if not plug.exists():
+              fails.append('capacitor.plugins.json missing (did cap sync run?)')
+          elif 'UnityAds' not in plug.read_text():
+              fails.append('UnityAds plugin not registered in capacitor.plugins.json')
+          www = pathlib.Path('www/index.html').read_text()
+          for bad in ('ca-app-pub', '3940256099942544'):
+              if bad in www:
+                  fails.append('forbidden string in www/index.html: ' + bad)
+          if 'admob' in www.lower():
+              fails.append('AdMob reference still in www/index.html')
+          for good in ('800457125', 'BP_Rewarded_Android', 'BP_Interstitial_Android', 'BP_Banner_Android'):
+              if good not in www:
+                  fails.append('missing Unity ID in www/index.html: ' + good)
+          if fails:
+              print('UNITY ADS CHECK FAILED:')
+              for f in fails:
+                  print(' -', f)
+              sys.exit(1)
+          print('Unity Ads wiring OK: plugin registered, Game ID + 3 placements present, no old-network IDs')
           EOF
 
       - name: Apply custom app icon
