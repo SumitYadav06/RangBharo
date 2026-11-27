@@ -978,8 +978,9 @@ body.net-gated *{animation-play-state:paused !important}
      ready" (rewarded). There is no demo/fake ad anywhere in the app.
    * No App Open: Unity Ads has no app-open format — do not invent one.
      Nothing shows on cold start.
-   * Placements: banner on Home only, interstitial after every 3rd
-     finished picture, rewarded only when the player taps Watch Ad
+   * Placements: banner on Home only once 4 pictures are finished,
+     interstitial after every 5th finished picture, rewarded only when
+     the player taps Watch Ad
      (Special unlock / early unlock / +3 hints).
      Nothing is forced during play. testMode is false (release). */
 window.UNITY_CONFIG = {
@@ -1017,6 +1018,16 @@ window.UnityAdsNative = (function(){
   }
   function showHomeBanner(){
     if(!inited || bannerShown) return;
+    /* BANNER GATE (binding rule): no banner on app open, and none
+       before the player has completed 4 levels / pictures / game
+       overs. The game exposes its own persisted completed count via
+       window.__bannerEligible; until it answers yes this is a no-op
+       and no banner view is ever created, so Home shows no ad and no
+       empty ad gap. Fail closed: a missing or throwing predicate
+       means no banner. */
+    var __eligible = false;
+    try{ __eligible = (typeof window.__bannerEligible === 'function') && !!window.__bannerEligible(); }catch(e){ __eligible = false; }
+    if(!__eligible) return;
     try{
       plugin.showBanner({placementId: cfg.bannerPlacementId}).then(function(){
         bannerShown = true;
@@ -1095,7 +1106,7 @@ window.UnityAdsNative = (function(){
             inited = true;
             preloadInterstitial();
             preloadRewarded();
-            showHomeBanner();
+            showHomeBanner(); /* gated inside: no-op until 4 completions */
             done(true);
           } else done(false);
         }).catch(function(){ done(false); });
@@ -4917,6 +4928,18 @@ function saveProgress(){
   }catch(e){ /* storage unavailable — progress just won't persist */ }
 }
 
+/* Banner eligibility (binding rule): the Home banner may only appear
+   once the player has finished 4 pictures. The Unity bridge asks this
+   before showing a banner — on cold start it answers "no", so no ad
+   ever shows on app open. Uses the same persisted completed set as
+   the level lock (Object.keys(completedSet)); no second counter.
+   Note: starting a new Endless Loop clears completedSet, so the
+   banner pauses again until 4 pictures of the new loop are done —
+   the same way the every-5th-picture interstitial does. */
+window.__bannerEligible = function(){
+  return Object.keys(completedSet).length >= 4;
+};
+
 /* ============================================================ Endless Loop
    The game never ends. Finishing every sequential level of a loop
    opens a celebration, then the next loop starts automatically:
@@ -6108,7 +6131,7 @@ $('nextBtn').addEventListener('click', function(){
   var nxt=findNextPlayable();
   if(!nxt) return;
   var doneCount=Object.keys(completedSet).length;
-  if(doneCount>0 && doneCount%3===0){ showAdBreak(nxt.id); return; }
+  if(doneCount>0 && doneCount%5===0){ showAdBreak(nxt.id); return; }
   startPuzzle(nxt.id);
 });
 $('againBtn').addEventListener('click', function(){ startPuzzle(current.id); });
