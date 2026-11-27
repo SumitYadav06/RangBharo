@@ -69,15 +69,6 @@
   }
   .lock-cover.level-lock{background:#31404D;}
   .lock-cover.special-lock{background:#7A5200;}
-  /* ---------- Ad break ---------- */
-  .ad-card{max-width:400px;}
-  .ad-tag{display:inline-block; background:var(--ink); color:var(--bg); font-size:11px; font-weight:900;
-    letter-spacing:2px; padding:3px 10px; border-radius:6px; margin-bottom:12px;}
-  .ad-creative{border:2px dashed var(--line); border-radius:18px; background:var(--soft); padding:26px 16px; margin-bottom:14px;}
-  .ad-creative .ad-dots{display:flex; gap:8px; justify-content:center; margin-bottom:12px;}
-  .ad-creative .ad-dots span{width:20px; height:20px; border-radius:50%; display:block;}
-  .ad-creative h3{font-family:'Fredoka',sans-serif; font-size:22px; margin:0 0 4px; font-weight:700;}
-  .ad-creative p{margin:0; font-size:13px;}
   .big-btn[disabled]{opacity:.45; pointer-events:none;}
   .gold-btn{
     background:var(--gold); color:var(--gold-ink); font-family:'Fredoka',sans-serif; font-weight:600; font-size:15px;
@@ -164,15 +155,6 @@
   .loadmore-wrap{text-align:center; margin-top:24px;}
   .showing-text{color:var(--muted); font-weight:800; font-size:13.5px; margin-bottom:10px;}
   .empty-msg{text-align:center; color:var(--muted); font-weight:800; padding:34px 10px; font-size:16px;}
-  .ad-slot{
-    margin:26px auto 0; max-width:728px; border:2px dashed var(--line); border-radius:16px;
-    background:var(--card); color:var(--muted); text-align:center; padding:18px; font-weight:800; font-size:13px; letter-spacing:.4px;
-  }
-  .ad-slot span{display:block; font-size:11px; font-weight:700; opacity:.75; margin-top:2px;}
-  /* Native build: the real banner is drawn by the AdMob SDK at
-     the bottom of the screen — hide the web placeholder boxes
-     so there is never a fake slot AND a real banner. */
-  .native-ads .ad-slot{display:none;}
 
   /* ---------- Game ---------- */
   .hidden{display:none !important;}
@@ -275,10 +257,6 @@
   .benefit .b-ic{font-size:21px; flex:0 0 auto;}
   .price-line{font-family:'Fredoka',sans-serif; font-size:30px; font-weight:700; margin:14px 0 2px;}
   .price-sub{color:var(--muted); font-weight:800; font-size:13px; margin:0 0 16px;}
-  .demo-note{
-    background:var(--gold-soft); border:2px solid var(--gold); color:var(--gold-ink); border-radius:14px;
-    padding:10px 14px; font-weight:800; font-size:13px; line-height:1.45; margin:0 0 16px; text-align:left;
-  }
   .sheet{text-align:left;}
   .sheet h2{text-align:center;}
   .set-row{display:flex; justify-content:space-between; align-items:center; gap:14px; padding:13px 0; border-bottom:2px solid var(--soft);}
@@ -303,9 +281,6 @@
   .diff-btn.all.active{background:var(--ink); color:var(--bg); border-color:var(--ink);}
   .free-pill{font-weight:900; font-size:13px; color:var(--muted); margin-right:auto; display:flex; align-items:center; padding:0 6px;}
   .target-region{stroke:#FF5252 !important; stroke-width:5.5 !important;}
-  .ad-progress{height:12px; border-radius:999px; background:var(--soft); border:2px solid var(--line); overflow:hidden; margin-bottom:14px;}
-  .ad-progress-fill{height:100%; width:0%; background:repeating-linear-gradient(45deg,#FFC93D 0 14px,#F5B800 14px 28px); transition:width .3s linear;}
-  .ad-note{background:var(--gold-soft); border:2px solid var(--gold); color:var(--gold-ink); border-radius:14px; padding:10px 14px; font-weight:800; font-size:13px; line-height:1.45; margin:0 0 16px; text-align:left;}
   /* ---------- Phone-first game dock & compact gallery ---------- */
   @media(max-width:859px){
     .palette-panel{position:fixed; left:8px; right:8px; bottom:calc(8px + env(safe-area-inset-bottom)); z-index:45; padding:10px 12px 12px; border-radius:20px;}
@@ -425,7 +400,6 @@
   .browse-card .diff-switch{margin:0 auto 10px;}
   .browse-card .controls{margin:0 auto 10px;}
   .browse-card .chips{margin:0 auto 4px;}
-  .ad-slot{padding:12px 18px;}
 
   /* --- glossy game buttons --- */
   .play-btn{background:linear-gradient(180deg,#FF8A8A,#FF6B6B);}
@@ -527,13 +501,11 @@
     .chips::-webkit-scrollbar{display:none;}
     .chip{flex:0 0 auto;}
     .journey.play-card{padding:13px 12px;}
-    .ad-slot{margin-top:18px;}
   }
 
-  /* --- RangBharo polish: glossy thumbs, full-width surprise, ad unit labels --- */
+  /* --- RangBharo polish: glossy thumbs, full-width surprise --- */
   .pic-card .thumb{background:linear-gradient(180deg,#FFFDF7,#FFEFCE);}
   .browse-card .controls .random-btn{flex:1 1 auto; width:100%;}
-  .ad-unit-line{font-size:11px; font-weight:800; color:var(--muted); letter-spacing:.3px; margin:6px 0 0; word-break:break-all;}
   .pic-card .thumb svg{filter:drop-shadow(0 3px 5px rgba(120,72,0,.10));}
 
   @media (prefers-reduced-motion: reduce){
@@ -717,7 +689,7 @@
   @media (prefers-reduced-motion: reduce){ .tp-fill{animation:none !important;} }
 
   /* ==========================================================
-     v14 — GALLERY-STYLE HOME + APP-OPEN AD
+     v14 — GALLERY-STYLE HOME
      Real color-by-number apps show a picture gallery, not a
      level map: no "Level 1" chips and no star rows on cards.
      Locked pictures keep their artwork, softly faded, with one
@@ -771,7 +743,6 @@
   .pic-card{min-width:0;}
   .pic-card .thumb{min-width:0;}
   .overlay .win-card{max-width:min(420px, calc(100vw - 24px));}
-  .ad-unit-line{overflow-wrap:anywhere;}
   /* ==========================================================
      v15 — REAL ARTWORK (generated in-game art, local files)
      Splash hero on Home, a category scene banner above the
@@ -825,7 +796,6 @@
       <div class="showing-text" id="showingText"></div>
       <button class="big-btn main" id="loadMoreBtn" style="max-width:320px;">↓ <span data-i18n="loadMore">Load more pictures</span></button>
     </div>
-    <div class="ad-slot">AD SPACE — ADMOB BANNER<span data-ad-unit="bannerUnitId"></span></div>
   </section>
 
   <!-- ================= GAME ================= -->
@@ -865,7 +835,6 @@
             <button class="tool-btn" id="restartBtn">↺ <span data-i18n="startOver">Start Over</span></button>
           </div>
         </div>
-        <div class="ad-slot" style="margin-top:0;">AD SPACE — ADMOB BANNER<span data-ad-unit="bannerUnitId"></span></div>
       </div>
     </div>
   </section>
@@ -898,24 +867,6 @@
       <button class="big-btn gold" id="unlockWatchBtn">▶ <span data-i18n="watchAd">Watch Ad</span></button>
       <button class="big-btn main" id="unlockPrevBtn"><span data-i18n="playPrev">Play Previous Level</span></button>
       <button class="big-btn ghost" id="unlockCloseBtn" data-i18n="later">Maybe Later</button>
-    </div>
-  </div>
-</div>
-
-<!-- ================= REWARDED AD ================= -->
-<div class="overlay hidden" id="rewardedOverlay">
-  <div class="win-card ad-card">
-    <span class="ad-tag">REWARDED AD</span>
-    <div class="ad-creative">
-      <div class="ad-dots"><span style="background:#FF6B6B"></span><span style="background:#FFC93D"></span><span style="background:#12B5A5"></span><span style="background:#4D96FF"></span></div>
-      <h3>Your Ad Here</h3>
-      <p data-i18n="rewardedNote">Rewarded ad — in the real app, an AdMob rewarded ad plays here.</p>
-      <p class="ad-unit-line" data-ad-unit="rewardedUnitId"></p>
-    </div>
-    <div class="ad-progress"><div class="ad-progress-fill" id="rewardFill"></div></div>
-    <div class="win-actions">
-      <button class="big-btn gold" id="rewardClaimBtn" disabled>Claim Reward</button>
-      <button class="big-btn ghost" id="rewardCancelBtn" data-i18n="cancel">Cancel</button>
     </div>
   </div>
 </div>
@@ -961,22 +912,6 @@
   </div>
 </div>
 
-<!-- ================= AD BREAK ================= -->
-<div class="overlay hidden" id="adOverlay">
-  <div class="win-card ad-card">
-    <span class="ad-tag" id="adBreakTag">AD</span>
-    <div class="ad-creative">
-      <div class="ad-dots"><span style="background:#FF6B6B"></span><span style="background:#FFC93D"></span><span style="background:#12B5A5"></span><span style="background:#4D96FF"></span></div>
-      <h3>Your Ad Here</h3>
-      <p id="adBreakNote">Ad break — in the real app, an AdMob interstitial ad plays here.</p>
-      <p class="ad-unit-line" id="adBreakUnit" data-ad-unit="interstitialUnitId"></p>
-    </div>
-    <div class="win-actions">
-      <button class="big-btn main" id="adCloseBtn" disabled>Close</button>
-    </div>
-  </div>
-</div>
-
 <!-- ================= LOOP COMPLETE ================= -->
 <div class="overlay hidden" id="loopOverlay">
   <div class="win-card">
@@ -1007,42 +942,32 @@
 <div class="toast hidden" id="toast"></div>
 
 <script>
-/* ============================================================
-   ADMOB — ads-only monetization (real IDs, 2026-11-25).
-   AdMob App ID + 4 ad units below. These IDs are public-safe:
-   they only identify the app/ad unit; they cannot move money
-   or open the AdMob account (payment is tied to the account).
-
-   PLACEMENT RULES (do not change without a reason):
-     Banner       — Home (gallery) only, never while playing
-     Interstitial — after every 3rd finished picture
-     Rewarded     — only when the player taps Watch Ad
-                    (Special unlock / early unlock / +3 hints)
-     App Open     — once when the game opens
-   NO Rewarded-interstitial unit exists — never create one.
-
-   HOW IT WORKS:
-   * Web preview: no Capacitor plugin → the demo overlays in
-     this page (the old behaviour). No real ad, no error.
-   * APK (native): window.AdMobNative talks to the real AdMob
-     SDK through @capacitor-community/admob v6
-     (Capacitor 6, installed by the GitHub workflow). The
-     workflow also writes the App ID into AndroidManifest +
-     strings.xml after `cap sync` — without that meta-data the
-     SDK refuses to initialise.
-   * App Open: this plugin version has NO App Open API, so the
-     app-open slot stays a demo overlay. It is never faked as a
-     real ad. A plugin with App Open support is a separate job.
-============================================================ */
-window.ADMOB_CONFIG = {
-  appId:              'ca-app-pub-2948876721824340~4162645161', /* AdMob App ID — real, 2026-11-25 */
-  bannerUnitId:       'ca-app-pub-2948876721824340/7111728789', /* Banner — real, 2026-11-25 */
-  interstitialUnitId: 'ca-app-pub-2948876721824340/2191087942', /* Interstitial — real, 2026-11-25 */
-  appOpenUnitId:      'ca-app-pub-2948876721824340/4242536210', /* App Open — real, 2026-11-25 */
-  rewardedUnitId:     'ca-app-pub-2948876721824340/9630594263'  /* Rewarded — real, 2026-11-25 */
+/* ================= Ads — REAL Unity Ads (APK only) =================
+   Unity Ads SDK 4.x via a minimal local Capacitor plugin
+   (plugins/unity-ads in this repo — no maintained npm plugin for
+   Unity Ads exists, so the plugin is written here: UnityAds.initialize
+   / load / show + BannerView, wrapped as window.UnityAdsNative).
+   * APK (native): the plugin talks to the real Unity Ads SDK.
+     Game ID + placements are the real RangBharo Unity IDs (created
+     2026-11-27; no store URL was needed at signup).
+   * Web preview: no Unity SDK here — the bridge stays uninitialised
+     and the game just skips the ad (interstitial) or says "not
+     ready" (rewarded). There is no demo/fake ad anywhere in the app.
+   * No App Open: Unity Ads has no app-open format — do not invent one.
+     Nothing shows on cold start.
+   * Placements: banner on Home only, interstitial after every 3rd
+     finished picture, rewarded only when the player taps Watch Ad
+     (Special unlock / early unlock / +3 hints).
+     Nothing is forced during play. testMode is false (release). */
+window.UNITY_CONFIG = {
+  gameId: '800457125',
+  bannerPlacementId: 'BP_Banner_Android',
+  interstitialPlacementId: 'BP_Interstitial_Android',
+  rewardedPlacementId: 'BP_Rewarded_Android',
+  testMode: false
 };
-window.AdMobNative = (function(){
-  var cfg = window.ADMOB_CONFIG;
+window.UnityAdsNative = (function(){
+  var cfg = window.UNITY_CONFIG;
   var plugin = null, inited = false, initPromise = null;
   var bannerShown = false;
   var interstitialReady = false;
@@ -1052,26 +977,25 @@ window.AdMobNative = (function(){
     catch(e){ return false; }
   }
   function getPlugin(){
-    try{ var C = window.Capacitor; if(!C || !C.Plugins) return null; return C.Plugins.AdMob || null; }
+    try{ var C = window.Capacitor; if(!C || !C.Plugins) return null; return C.Plugins.UnityAds || null; }
     catch(e){ return null; }
   }
   function preloadInterstitial(){
     if(!inited) return;
     try{
-      plugin.prepareInterstitial({adId: cfg.interstitialUnitId}).then(function(){
-        interstitialReady = true;
-      }).catch(function(){ interstitialReady = false; });
+      plugin.loadInterstitial({placementId: cfg.interstitialPlacementId}).then(function(){ interstitialReady = true; })
+      .catch(function(){ interstitialReady = false; });
     }catch(e){ interstitialReady = false; }
   }
   function preloadRewarded(){
     if(!inited) return;
-    try{ plugin.prepareRewardVideoAd({adId: cfg.rewardedUnitId}).catch(function(){}); }
+    try{ plugin.loadRewarded({placementId: cfg.rewardedPlacementId}).catch(function(){}); }
     catch(e){}
   }
   function showHomeBanner(){
     if(!inited || bannerShown) return;
     try{
-      plugin.showBanner({adId: cfg.bannerUnitId, adSize: 'BANNER', position: 'BOTTOM_CENTER', margin: 0}).then(function(){
+      plugin.showBanner({placementId: cfg.bannerPlacementId}).then(function(){
         bannerShown = true;
         try{ document.body.classList.add('native-ads'); }catch(e){}
       }).catch(function(){});
@@ -1080,12 +1004,9 @@ window.AdMobNative = (function(){
   function hideBanner(){
     if(!inited || !bannerShown) return;
     bannerShown = false;
+    try{ document.body.classList.remove('native-ads'); }catch(e){}
     try{ plugin.hideBanner().catch(function(){}); }catch(e){}
   }
-  /* Interstitial: onShown runs only after the ad is dismissed
-     (Dismissed event). onFallback runs when no real ad is
-     available at all (web preview / no fill / load failed) —
-     the caller then shows the demo overlay instead. */
   function showInterstitial(onShown, onFallback){
     if(!inited || !interstitialReady){
       if(inited) preloadInterstitial();
@@ -1095,9 +1016,6 @@ window.AdMobNative = (function(){
     interstitialReady = false;
     pendingInterstitialCb = onShown || null;
     pendingInterstitialFallback = onFallback || null;
-    /* Safety net: if the Dismissed event never arrives (plugin
-       quirk), never leave the player stuck on the ad break —
-       after 120s (longer than any interstitial) move on. */
     setTimeout(function(){
       if(pendingInterstitialCb){
         var cb = pendingInterstitialCb;
@@ -1107,41 +1025,35 @@ window.AdMobNative = (function(){
       }
     }, 120000);
     try{
-      var p = plugin.showInterstitial();
-      if(p && p.then){
-        p.catch(function(){
-          var fb = pendingInterstitialFallback;
-          pendingInterstitialCb = null; pendingInterstitialFallback = null;
-          preloadInterstitial();
-          if(fb) fb();
-        });
-      }
+      plugin.showInterstitial({placementId: cfg.interstitialPlacementId}).then(function(){
+        var cb = pendingInterstitialCb;
+        pendingInterstitialCb = null; pendingInterstitialFallback = null;
+        preloadInterstitial();
+        if(cb) cb();
+      }).catch(function(){
+        var fb = pendingInterstitialFallback;
+        pendingInterstitialCb = null; pendingInterstitialFallback = null;
+        preloadInterstitial();
+        if(fb) fb();
+      });
     }catch(e){
       pendingInterstitialCb = null; pendingInterstitialFallback = null;
       preloadInterstitial();
       if(onFallback) onFallback();
     }
   }
-  /* Rewarded: onRewarded runs ONLY when AdMob reports the user
-     earned the reward. onLoadFail = ad could not even load
-     (no fill) — caller may show the demo overlay. onNotEarned =
-     ad showed but the user closed it without earning — no
-     reward and no demo, so nobody gets a free unlock. */
   function showRewarded(onRewarded, onLoadFail, onNotEarned){
     if(!inited){ if(onLoadFail) onLoadFail(); return; }
     try{
-      plugin.prepareRewardVideoAd({adId: cfg.rewardedUnitId}).then(function(){
-        var shown = plugin.showRewardVideoAd();
-        if(shown && shown.then){
-          shown.then(function(reward){
-            preloadRewarded();
-            if(reward){ if(onRewarded) onRewarded(); }
-            else if(onNotEarned) onNotEarned();
-          }).catch(function(){
-            preloadRewarded();
-            if(onNotEarned) onNotEarned();
-          });
-        } else if(onNotEarned) onNotEarned();
+      plugin.loadRewarded({placementId: cfg.rewardedPlacementId}).then(function(){
+        plugin.showRewarded({placementId: cfg.rewardedPlacementId}).then(function(res){
+          preloadRewarded();
+          if(res && res.earned){ if(onRewarded) onRewarded(); }
+          else if(onNotEarned) onNotEarned();
+        }).catch(function(){
+          preloadRewarded();
+          if(onNotEarned) onNotEarned();
+        });
       }).catch(function(){ if(onLoadFail) onLoadFail(); });
     }catch(e){ if(onLoadFail) onLoadFail(); }
   }
@@ -1151,41 +1063,20 @@ window.AdMobNative = (function(){
       if(!isNative()){ resolve(false); return; }
       plugin = getPlugin();
       if(!plugin || !plugin.initialize){ resolve(false); return; }
+      var settled = false;
+      function done(v){ if(!settled){ settled = true; resolve(v); } }
+      setTimeout(function(){ done(false); }, 15000);
       try{
-        if(plugin.addListener){
-          plugin.addListener('interstitialAdDismissed', function(){
-            var cb = pendingInterstitialCb;
-            pendingInterstitialCb = null; pendingInterstitialFallback = null;
+        plugin.initialize({gameId: cfg.gameId, testMode: cfg.testMode}).then(function(res){
+          if(res && res.initialized){
+            inited = true;
             preloadInterstitial();
-            if(cb) cb();
-          });
-          plugin.addListener('interstitialAdFailedToShow', function(){
-            var fb = pendingInterstitialFallback;
-            pendingInterstitialCb = null; pendingInterstitialFallback = null;
-            preloadInterstitial();
-            if(fb) fb();
-          });
-          plugin.addListener('interstitialAdFailedToLoad', function(){ interstitialReady = false; });
-        }
-      }catch(e){}
-      plugin.initialize().then(function(){
-        inited = true;
-        /* UMP consent (EEA/UK only in practice): best-effort,
-           never blocks the game or the ads. */
-        try{
-          if(plugin.requestConsentInfo){
-            plugin.requestConsentInfo().then(function(info){
-              if(info && info.isConsentFormAvailable && info.status === 'REQUIRED' && plugin.showConsentForm){
-                plugin.showConsentForm().catch(function(){});
-              }
-            }).catch(function(){});
-          }
-        }catch(e){}
-        preloadInterstitial();
-        preloadRewarded();
-        showHomeBanner();
-        resolve(true);
-      }).catch(function(){ resolve(false); });
+            preloadRewarded();
+            showHomeBanner();
+            done(true);
+          } else done(false);
+        }).catch(function(){ done(false); });
+      }catch(e){ done(false); }
     });
     return initPromise;
   }
@@ -1199,22 +1090,15 @@ window.AdMobNative = (function(){
     showRewarded: showRewarded
   };
 })();
-/* Backwards-compatible seam (old callers used these names).
-   App Open: no API in this plugin version — the demo overlay
-   in showAppOpenAd stays as-is; do NOT wire the App Open unit
-   id into an interstitial call (wrong format, policy risk). */
-window.admobShowInterstitial = function(onClose, onFallback){
-  if(window.AdMobNative) window.AdMobNative.showInterstitial(onClose, onFallback);
+window.unityShowInterstitial = function(onClose, onFallback){
+  if(window.UnityAdsNative) window.UnityAdsNative.showInterstitial(onClose, onFallback);
   else if(onFallback) onFallback();
 };
-window.admobShowAppOpen = function(onClose){
-  /* Demo overlay only — see note above. */
-  if(onClose) onClose();
-};
-window.admobShowRewarded = function(onReward, onLoadFail, onNotEarned){
-  if(window.AdMobNative) window.AdMobNative.showRewarded(onReward, onLoadFail, onNotEarned);
+window.unityShowRewarded = function(onReward, onLoadFail, onNotEarned){
+  if(window.UnityAdsNative) window.UnityAdsNative.showRewarded(onReward, onLoadFail, onNotEarned);
   else if(onLoadFail) onLoadFail();
 };
+
 </script>
 <script>
 /* ============================================================
@@ -2030,12 +1914,23 @@ add(mk('apple','Red Apple','food',1,false,0,[
   EE(138,204,16,30,5,-18),
   CC(320,120,16,6), CC(70,120,13,6)
 ],''));
-add(mk('banana','Banana Bunch','food',2,false,2,[
+add(mk('banana','Banana Bunch','food',3,false,2,[
   RR(178,58,44,24,4,8),
   PP('M168,80 C120,150 128,268 224,330 C238,338 252,330 246,314 C180,268 156,168 190,88 Z',196,206,1),
   PP('M214,84 C238,168 282,238 344,262 C358,268 368,254 358,242 C292,196 252,140 238,82 Z',292,168,3),
   PP('M196,96 C168,160 176,244 226,296',202,200,2),
-  CC(82,330,18,5), CC(330,100,14,6)
+  CC(82,330,18,5), CC(330,100,14,6),
+  PG('148,120 158,118 156,250 146,250',152,184,2),
+  CC(160,180,7,2),
+  CC(180,260,7,2),
+  CC(210,300,6,2),
+  CC(150,140,6,2),
+  CC(300,180,7,1),
+  CC(320,220,7,1),
+  CC(310,150,6,1),
+  PG('120,60 170,30 190,70 150,90',155,60,4),
+  EE(200,350,120,18,5),
+  PG('215,315 245,310 235,335 220,335',230,322,3)
 ],'<path d="M196,96 C168,160 176,244 226,296" fill="none" stroke="#D9A400" stroke-width="4" stroke-linecap="round"/>'));
 add(mk('watermelon','Watermelon Slice','food',2,false,9,[
   PP('M64,128 C64,238 128,322 200,322 C272,322 336,238 336,128 Z',200,232,1),
@@ -2052,12 +1947,24 @@ add(mk('grapes','Grape Bunch','food',3,false,5,[
   CC(162,262,30,1), CC(238,262,30,1), CC(200,308,30,1),
   CC(178,150,10,4,11), CC(222,232,10,4,11)
 ],''));
-add(mk('carrot','Crunchy Carrot','food',2,false,1,[
+add(mk('carrot','Crunchy Carrot','food',3,false,1,[
   PP('M188,116 C170,76 148,54 118,48 C134,84 156,106 180,120 Z',152,84,2),
   PP('M206,112 C214,68 232,44 262,36 C256,76 238,102 218,120 Z',238,80,2),
   PP('M200,116 C188,74 196,46 224,30 C232,68 224,100 212,118 Z',212,76,2),
   PP('M148,128 C176,104 224,104 252,128 C240,220 224,300 200,356 C176,300 160,220 148,128 Z',200,238,1),
-  RR(168,196,44,10,3,5), RR(176,258,36,10,3,5)
+  RR(168,196,44,10,3,5), RR(176,258,36,10,3,5),
+  PG('200,120 210,60 228,58 224,110',214,88,2),
+  PG('170,125 150,80 165,70 185,115',168,98,2),
+  RR(160,150,60,8,3,4),
+  RR(184,300,32,8,3,4),
+  EE(200,372,130,16,2),
+  PG('98,305 122,305 114,352 110,358 104,352',110,330,1),
+  PG('278,305 302,305 294,352 290,358 284,352',290,330,1),
+  PG('105,300 110,285 118,300',111,295,2),
+  PG('285,300 290,285 298,300',291,295,2),
+  CC(200,170,6,3),
+  CC(190,230,6,3),
+  CC(210,280,6,3)
 ],''));
 add(mk('cheese','Cheese Wedge','food',2,false,2,[
   PG('52,268 348,268 348,158',200,238,1),
@@ -2065,11 +1972,24 @@ add(mk('cheese','Cheese Wedge','food',2,false,2,[
   CC(238,224,19,2), CC(292,252,13,2), CC(168,250,11,2),
   CC(96,120,18,4), CC(322,96,13,4)
 ],''));
-add(mk('egg','Fried Egg','food',1,false,2,[
+add(mk('egg','Fried Egg','food',2,false,2,[
   PP('M200,96 C258,92 292,128 306,168 C320,208 348,232 330,272 C312,312 258,306 214,316 C164,328 96,318 76,276 C58,238 92,214 90,178 C88,138 142,100 200,96 Z',200,208,1),
   CC(206,204,50,2),
   CC(196,190,14,3),
-  CC(84,330,15,4), CC(322,330,15,4)
+  CC(84,330,15,4), CC(322,330,15,4),
+  EE(200,330,170,36,4),
+  CC(222,220,10,3),
+  CC(130,160,10,2),
+  CC(280,150,9,2),
+  CC(300,250,10,2),
+  CC(120,260,9,2),
+  CC(250,290,8,2),
+  CC(160,130,6,4),
+  CC(240,140,6,4),
+  CC(170,280,6,4),
+  CC(270,200,6,4),
+  PG('150,200 165,195 160,210',158,202,4),
+  PG('260,230 275,225 270,240',268,232,4)
 ],''));
 add(mk('popcorn','Popcorn Bucket','food',3,false,0,[
   CC(128,118,30,3), CC(182,100,34,3), CC(238,102,32,3), CC(282,124,28,3), CC(152,142,28,3), CC(226,142,28,3),
@@ -3016,12 +2936,26 @@ add(mk('rainbowhills','Rainbow Hills','nature',2,false,9,[
   PG('46,302 98,302 72,278',72,292,9)
 ],''));
 
-add(mk('sandwich','Sandwich','food',2,false,1,[
+add(mk('sandwich','Sandwich','food',3,false,1,[
   PP('M84,150 C84,96 140,66 200,66 C260,66 316,96 316,150 Z',200,110,1),
   RR(76,150,248,20,2,8),
   PP('M84,178 L316,178 L316,192 L262,192 L236,208 L210,192 L84,192 Z',150,186,3,11),
   RR(84,214,232,22,4,10),
-  PP('M84,242 L316,242 C316,272 260,292 200,292 C140,292 84,272 84,242 Z',200,266,1)
+  PP('M84,242 L316,242 C316,272 260,292 200,292 C140,292 84,272 84,242 Z',200,266,1),
+  EE(200,330,160,30,4),
+  EE(150,100,8,5,4),
+  EE(200,88,8,5,4),
+  EE(250,100,8,5,4),
+  EE(180,120,7,4,4),
+  EE(225,120,7,4,4),
+  PG('110,170 122,170 116,186',116,176,2),
+  PG('200,170 212,170 206,188',206,177,2),
+  PG('280,170 292,170 286,184',286,175,2),
+  CC(130,225,9,1),
+  CC(200,225,9,1),
+  CC(270,225,9,1),
+  CC(60,340,10,3),
+  CC(340,340,10,3)
 ],'<g fill="#FFFDF7" opacity=".8"><ellipse cx="160" cy="104" rx="7" ry="4"/><ellipse cx="205" cy="92" rx="7" ry="4"/><ellipse cx="245" cy="108" rx="7" ry="4"/><ellipse cx="185" cy="122" rx="7" ry="4"/></g>'));
 add(mk('milkshake','Milkshake','food',2,false,4,[
   PP('M222,60 L240,66 L214,150 L198,144 Z',218,105,5,11),
@@ -4509,7 +4443,7 @@ PUZZLES.forEach(function(p){
 var I18N = {
 en:{tagline:'Pick a picture, choose a color, and tap every part with the same number. Fill them all to finish the artwork!',
  step1:'Pick a color below', step2:'Tap parts with that number', step3:'Finish & earn stars',
- search:'Search pictures…', random:'Surprise me!', sideEasy:'Easy', sideHard:'Hard', sideAll:'All Pictures', freePill:'Special pictures unlock free — just watch an ad', specialWord:'Special', catSpecial:'⭐ Special', specialBadge:'⭐ Special', watchAd:'Watch Ad', unlockTitle:'Picture Locked', seqDesc:'Finish the picture before this one to unlock it free — or watch a short ad and unlock it right now.', specialDesc:'This Special picture is free — watch a short ad to unlock it. No payment, ever.', playPrev:'Play Previous Picture', claim:'Claim Reward', rewardedNote:'Rewarded ad — in the real app, an AdMob rewarded ad plays here.', hintsAdded:'+3 hints added!', unlockedAd:'Unlocked — enjoy!', pictures:'pictures', finished:'finished', starsEarned:'stars earned', loadMore:'Load more pictures',
+ search:'Search pictures…', random:'Surprise me!', sideEasy:'Easy', sideHard:'Hard', sideAll:'All Pictures', freePill:'Special pictures unlock free — just watch an ad', specialWord:'Special', catSpecial:'⭐ Special', specialBadge:'⭐ Special', watchAd:'Watch Ad', unlockTitle:'Picture Locked', seqDesc:'Finish the picture before this one to unlock it free — or watch a short ad and unlock it right now.', specialDesc:'This Special picture is free — watch a short ad to unlock it. No payment, ever.', playPrev:'Play Previous Picture', claim:'Claim Reward', rewardedNote:'Rewarded ad — in the real app, an Unity rewarded ad plays here.', hintsAdded:'+3 hints added!', unlockedAd:'Unlocked — enjoy!', pictures:'pictures', finished:'finished', starsEarned:'stars earned', loadMore:'Load more pictures',
  showing:'Showing', of:'of', noResults:'No pictures found. Try another search!',
  play:'Play', redo:'Redo', unlock:'Unlock', startHint:'Tap to start', againHint:'Color it again', doneBadge:'✓ Done',
  parts:'parts', colorsWord:'colors', progress:'Progress', colorsHead:'Colors',
@@ -4525,14 +4459,14 @@ en:{tagline:'Pick a picture, choose a color, and tap every part with the same nu
  resetProgress:'Reset Progress', resetDesc:'Clear all finished pictures and stars', reset:'Reset',
  resetDoneMsg:'Progress cleared.', doneBtn:'Done',
  journey:'Level Journey', level:'Level', continueWord:'Continue', allDone:'All levels complete!',
- lockedMsg:'Finish the previous picture first to unlock this one!', unlockedMsg:'Level {n} unlocked', closeIn:'Close in {n}s',
+ lockedMsg:'Finish the previous picture first to unlock this one!', unlockedMsg:'Level {n} unlocked', closeIn:'Close in {n}s', adNotReady:'Ad not ready yet — try again in a moment',
  colorX:'Color', left:'left', pickFirst:'Pick a color first!', pickUnfinished:'Pick a color that still has parts left!',
  lookPart:'Look — this part needs color {n}!', needPart:'This part needs color {n}.', nowColor:'Now color {n}.',
  praise:['Great job!','Super!','Well done!','Lovely!','Brilliant!','Amazing!','Perfect!','You did it!'],
  encourage:['Almost! Try again.','Not that one — check the number.','Look at the number and retry!']},
 hi:{tagline:'एक तस्वीर चुनो, एक रंग चुनो, और उसी नंबर वाले हर हिस्से पर टैप करो। सारे हिस्से भरो और तस्वीर पूरी करो!',
  step1:'नीचे एक रंग चुनो', step2:'उसी नंबर वाले हिस्सों पर टैप करो', step3:'पूरा करो और सितारे पाओ',
- search:'तस्वीरें खोजो…', random:'कोई भी दिखाओ!', sideEasy:'आसान', sideHard:'कठिन', sideAll:'सभी तस्वीरें', freePill:'स्पेशल तस्वीरें मुफ़्त खुलती हैं — बस विज्ञापन देखो', specialWord:'स्पेशल', catSpecial:'⭐ स्पेशल', specialBadge:'⭐ स्पेशल', watchAd:'विज्ञापन देखो', unlockTitle:'तस्वीर बंद है', seqDesc:'इससे पहले वाली तस्वीर पूरी करके इसे मुफ़्त खोलो — या छोटा विज्ञापन देखकर अभी खोलो।', specialDesc:'यह स्पेशल तस्वीर मुफ़्त है — छोटा विज्ञापन देखकर इसे खोलो। कोई भुगतान कभी नहीं।', playPrev:'पिछली तस्वीर खेलो', claim:'इनाम लो', rewardedNote:'रिवॉर्ड विज्ञापन — असली ऐप में यहाँ AdMob का रिवॉर्ड विज्ञापन चलेगा।', hintsAdded:'+3 इशारे मिल गए!', unlockedAd:'खुल गया — मज़े करो!', pictures:'तस्वीरें', finished:'पूरी हुईं', starsEarned:'सितारे मिले', loadMore:'और तस्वीरें दिखाओ',
+ search:'तस्वीरें खोजो…', random:'कोई भी दिखाओ!', sideEasy:'आसान', sideHard:'कठिन', sideAll:'सभी तस्वीरें', freePill:'स्पेशल तस्वीरें मुफ़्त खुलती हैं — बस विज्ञापन देखो', specialWord:'स्पेशल', catSpecial:'⭐ स्पेशल', specialBadge:'⭐ स्पेशल', watchAd:'विज्ञापन देखो', unlockTitle:'तस्वीर बंद है', seqDesc:'इससे पहले वाली तस्वीर पूरी करके इसे मुफ़्त खोलो — या छोटा विज्ञापन देखकर अभी खोलो।', specialDesc:'यह स्पेशल तस्वीर मुफ़्त है — छोटा विज्ञापन देखकर इसे खोलो। कोई भुगतान कभी नहीं।', playPrev:'पिछली तस्वीर खेलो', claim:'इनाम लो', rewardedNote:'रिवॉर्ड विज्ञापन — असली ऐप में यहाँ Unity का रिवॉर्ड विज्ञापन चलेगा।', hintsAdded:'+3 इशारे मिल गए!', unlockedAd:'खुल गया — मज़े करो!', pictures:'तस्वीरें', finished:'पूरी हुईं', starsEarned:'सितारे मिले', loadMore:'और तस्वीरें दिखाओ',
  showing:'दिखाई जा रही हैं', of:'/', noResults:'कोई तस्वीर नहीं मिली। कुछ और खोजो!',
  play:'खेलो', redo:'फिर से', unlock:'खोलो', startHint:'शुरू करने के लिए टैप करो', againHint:'फिर से रंग भरो', doneBadge:'✓ हो गया',
  parts:'हिस्से', colorsWord:'रंग', progress:'प्रगति', colorsHead:'रंग',
@@ -4548,14 +4482,14 @@ hi:{tagline:'एक तस्वीर चुनो, एक रंग चुन�
  resetProgress:'प्रगति रीसेट करो', resetDesc:'सारी पूरी तस्वीरें और सितारे साफ़ करो', reset:'रीसेट',
  resetDoneMsg:'प्रगति साफ़ हो गई।', doneBtn:'हो गया',
  journey:'लेवल यात्रा', level:'लेवल', continueWord:'जारी रखो', allDone:'सभी लेवल पूरे!',
- lockedMsg:'इसे खोलने के लिए पहले पिछली तस्वीर पूरी करो!', unlockedMsg:'लेवल {n} खुल गया', closeIn:'{n}s में बंद होगा',
+ lockedMsg:'इसे खोलने के लिए पहले पिछली तस्वीर पूरी करो!', unlockedMsg:'लेवल {n} खुल गया', closeIn:'{n}s में बंद होगा', adNotReady:'विज्ञापन अभी तैयार नहीं है — थोड़ी देर में फिर कोशिश करें।',
  colorX:'रंग', left:'बचे', pickFirst:'पहले एक रंग चुनो!', pickUnfinished:'ऐसा रंग चुनो जिसके हिस्से बचे हों!',
  lookPart:'देखो — इस हिस्से में रंग {n} चाहिए!', needPart:'इस हिस्से में रंग {n} चाहिए।', nowColor:'अब रंग {n} भरो।',
  praise:['बहुत बढ़िया!','शाबाश!','वाह!','कमाल!','ज़बरदस्त!','बहुत सुंदर!','एकदम सही!','तुमने कर दिखाया!'],
  encourage:['बस थोड़ा और! फिर कोशिश करो।','यह वाला नहीं — नंबर देखो।','नंबर देखकर फिर कोशिश करो!']},
 es:{tagline:'Elige una imagen, elige un color y toca cada parte con ese número. ¡Rellénalas todas para terminar la obra!',
  step1:'Elige un color abajo', step2:'Toca las partes con ese número', step3:'Termina y gana estrellas',
- search:'Buscar imágenes…', random:'¡Sorpréndeme!', sideEasy:'Fácil', sideHard:'Difícil', sideAll:'Todas las imágenes', freePill:'Las imágenes especiales se desbloquean gratis: solo mira un anuncio', specialWord:'Especial', catSpecial:'⭐ Especial', specialBadge:'⭐ Especial', watchAd:'Ver anuncio', unlockTitle:'Imagen bloqueada', seqDesc:'Termina la imagen anterior para desbloquearla gratis, o mira un anuncio corto y desbloquéala ahora.', specialDesc:'Esta imagen especial es gratis: mira un anuncio corto para desbloquearla. Sin pagos, nunca.', playPrev:'Jugar imagen anterior', claim:'Reclamar recompensa', rewardedNote:'Anuncio con recompensa: en la app real aquí se reproduce un anuncio recompensado de AdMob.', hintsAdded:'¡+3 pistas añadidas!', unlockedAd:'¡Desbloqueado! ¡A disfrutar!', pictures:'imágenes', finished:'terminadas', starsEarned:'estrellas ganadas', loadMore:'Cargar más imágenes',
+ search:'Buscar imágenes…', random:'¡Sorpréndeme!', sideEasy:'Fácil', sideHard:'Difícil', sideAll:'Todas las imágenes', freePill:'Las imágenes especiales se desbloquean gratis: solo mira un anuncio', specialWord:'Especial', catSpecial:'⭐ Especial', specialBadge:'⭐ Especial', watchAd:'Ver anuncio', unlockTitle:'Imagen bloqueada', seqDesc:'Termina la imagen anterior para desbloquearla gratis, o mira un anuncio corto y desbloquéala ahora.', specialDesc:'Esta imagen especial es gratis: mira un anuncio corto para desbloquearla. Sin pagos, nunca.', playPrev:'Jugar imagen anterior', claim:'Reclamar recompensa', rewardedNote:'Anuncio con recompensa: en la app real aquí se reproduce un anuncio recompensado de Unity.', hintsAdded:'¡+3 pistas añadidas!', unlockedAd:'¡Desbloqueado! ¡A disfrutar!', pictures:'imágenes', finished:'terminadas', starsEarned:'estrellas ganadas', loadMore:'Cargar más imágenes',
  showing:'Mostrando', of:'de', noResults:'No se encontraron imágenes. ¡Prueba otra búsqueda!',
  play:'Jugar', redo:'Repetir', unlock:'Desbloquear', startHint:'Toca para empezar', againHint:'Colorea de nuevo', doneBadge:'✓ Hecho',
  parts:'partes', colorsWord:'colores', progress:'Progreso', colorsHead:'Colores',
@@ -4576,7 +4510,7 @@ es:{tagline:'Elige una imagen, elige un color y toca cada parte con ese número.
  encourage:['¡Casi! Inténtalo de nuevo.','Esa no: mira el número.','¡Mira el número y reintenta!']},
 fr:{tagline:'Choisis une image, choisis une couleur et touche chaque partie avec le même numéro. Remplis tout pour terminer le dessin !',
  step1:'Choisis une couleur en bas', step2:'Touche les parties avec ce numéro', step3:'Termine et gagne des étoiles',
- search:'Rechercher des images…', random:'Surprends-moi !', sideEasy:'Facile', sideHard:'Difficile', sideAll:'Toutes les images', freePill:'Les images spéciales se débloquent gratuitement : regarde une pub', specialWord:'Spécial', catSpecial:'⭐ Spécial', specialBadge:'⭐ Spécial', watchAd:'Regarder la pub', unlockTitle:'Image verrouillée', seqDesc:'Termine l\'image précédente pour la débloquer gratuitement, ou regarde une courte pub pour la débloquer tout de suite.', specialDesc:'Cette image spéciale est gratuite : regarde une courte pub pour la débloquer. Aucun paiement, jamais.', playPrev:'Jouer l\'image précédente', claim:'Recevoir la récompense', rewardedNote:'Pub avec récompense : dans la vraie app, une pub récompensée AdMob joue ici.', hintsAdded:'+3 indices ajoutés !', unlockedAd:'Débloqué — amuse-toi bien !', pictures:'images', finished:'terminées', starsEarned:'étoiles gagnées', loadMore:'Charger plus d\'images',
+ search:'Rechercher des images…', random:'Surprends-moi !', sideEasy:'Facile', sideHard:'Difficile', sideAll:'Toutes les images', freePill:'Les images spéciales se débloquent gratuitement : regarde une pub', specialWord:'Spécial', catSpecial:'⭐ Spécial', specialBadge:'⭐ Spécial', watchAd:'Regarder la pub', unlockTitle:'Image verrouillée', seqDesc:'Termine l\'image précédente pour la débloquer gratuitement, ou regarde une courte pub pour la débloquer tout de suite.', specialDesc:'Cette image spéciale est gratuite : regarde une courte pub pour la débloquer. Aucun paiement, jamais.', playPrev:'Jouer l\'image précédente', claim:'Recevoir la récompense', rewardedNote:'Pub avec récompense : dans la vraie app, une pub récompensée Unity joue ici.', hintsAdded:'+3 indices ajoutés !', unlockedAd:'Débloqué — amuse-toi bien !', pictures:'images', finished:'terminées', starsEarned:'étoiles gagnées', loadMore:'Charger plus d\'images',
  showing:'Affichage de', of:'sur', noResults:'Aucune image trouvée. Essaie une autre recherche !',
  play:'Jouer', redo:'Refaire', unlock:'Débloquer', startHint:'Touche pour commencer', againHint:'Colorie encore', doneBadge:'✓ Fait',
  parts:'parties', colorsWord:'couleurs', progress:'Progression', colorsHead:'Couleurs',
@@ -4597,7 +4531,7 @@ fr:{tagline:'Choisis une image, choisis une couleur et touche chaque partie avec
  encourage:['Presque ! Réessaie.','Pas celle-là — regarde le numéro.','Regarde le numéro et réessaie !']},
 de:{tagline:'Wähle ein Bild, wähle eine Farbe und tippe auf jeden Teil mit dieser Nummer. Fülle alles aus, um das Kunstwerk zu vollenden!',
  step1:'Wähle unten eine Farbe', step2:'Tippe Teile mit dieser Nummer an', step3:'Fertigstellen & Sterne verdienen',
- search:'Bilder suchen…', random:'Überrasch mich!', sideEasy:'Leicht', sideHard:'Schwer', sideAll:'Alle Bilder', freePill:'Spezialbilder werden gratis freigeschaltet — einfach Werbung ansehen', specialWord:'Spezial', catSpecial:'⭐ Spezial', specialBadge:'⭐ Spezial', watchAd:'Werbung ansehen', unlockTitle:'Bild gesperrt', seqDesc:'Beende das vorherige Bild, um dieses gratis freizuschalten — oder sieh dir kurze Werbung an und schalte es sofort frei.', specialDesc:'Dieses Spezialbild ist gratis — sieh dir kurze Werbung an, um es freizuschalten. Keine Zahlung, niemals.', playPrev:'Vorheriges Bild spielen', claim:'Belohnung erhalten', rewardedNote:'Belohnungs-Werbung — in der echten App läuft hier eine AdMob Rewarded Ad.', hintsAdded:'+3 Tipps erhalten!', unlockedAd:'Freigeschaltet — viel Spaß!', pictures:'Bilder', finished:'fertig', starsEarned:'Sterne verdient', loadMore:'Mehr Bilder laden',
+ search:'Bilder suchen…', random:'Überrasch mich!', sideEasy:'Leicht', sideHard:'Schwer', sideAll:'Alle Bilder', freePill:'Spezialbilder werden gratis freigeschaltet — einfach Werbung ansehen', specialWord:'Spezial', catSpecial:'⭐ Spezial', specialBadge:'⭐ Spezial', watchAd:'Werbung ansehen', unlockTitle:'Bild gesperrt', seqDesc:'Beende das vorherige Bild, um dieses gratis freizuschalten — oder sieh dir kurze Werbung an und schalte es sofort frei.', specialDesc:'Dieses Spezialbild ist gratis — sieh dir kurze Werbung an, um es freizuschalten. Keine Zahlung, niemals.', playPrev:'Vorheriges Bild spielen', claim:'Belohnung erhalten', rewardedNote:'Belohnungs-Werbung — in der echten App läuft hier eine Unity Rewarded Ad.', hintsAdded:'+3 Tipps erhalten!', unlockedAd:'Freigeschaltet — viel Spaß!', pictures:'Bilder', finished:'fertig', starsEarned:'Sterne verdient', loadMore:'Mehr Bilder laden',
  showing:'Zeige', of:'von', noResults:'Keine Bilder gefunden. Versuche eine andere Suche!',
  play:'Spielen', redo:'Nochmal', unlock:'Freischalten', startHint:'Tippen zum Starten', againHint:'Nochmal ausmalen', doneBadge:'✓ Fertig',
  parts:'Teile', colorsWord:'Farben', progress:'Fortschritt', colorsHead:'Farben',
@@ -4618,7 +4552,7 @@ de:{tagline:'Wähle ein Bild, wähle eine Farbe und tippe auf jeden Teil mit die
  encourage:['Knapp daneben! Versuch es nochmal.','Nicht der — schau auf die Nummer.','Schau auf die Nummer und versuch es nochmal!']},
 pt:{tagline:'Escolha uma imagem, escolha uma cor e toque em cada parte com esse número. Preencha tudo para terminar a obra!',
  step1:'Escolha uma cor abaixo', step2:'Toque nas partes com esse número', step3:'Termine e ganhe estrelas',
- search:'Pesquisar imagens…', random:'Surpreenda-me!', sideEasy:'Fácil', sideHard:'Difícil', sideAll:'Todas as imagens', freePill:'Imagens especiais desbloqueiam grátis — é só assistir a um anúncio', specialWord:'Especial', catSpecial:'⭐ Especial', specialBadge:'⭐ Especial', watchAd:'Assistir anúncio', unlockTitle:'Imagem bloqueada', seqDesc:'Termine a imagem anterior para desbloquear grátis — ou assista a um anúncio curto e desbloqueie agora.', specialDesc:'Esta imagem especial é grátis: assista a um anúncio curto para desbloquear. Sem pagamento, nunca.', playPrev:'Jogar imagem anterior', claim:'Resgatar recompensa', rewardedNote:'Anúncio recompensado — no app real, um anúncio recompensado do AdMob toca aqui.', hintsAdded:'+3 dicas adicionadas!', unlockedAd:'Desbloqueado — divirta-se!', pictures:'imagens', finished:'concluídas', starsEarned:'estrelas ganhas', loadMore:'Carregar mais imagens',
+ search:'Pesquisar imagens…', random:'Surpreenda-me!', sideEasy:'Fácil', sideHard:'Difícil', sideAll:'Todas as imagens', freePill:'Imagens especiais desbloqueiam grátis — é só assistir a um anúncio', specialWord:'Especial', catSpecial:'⭐ Especial', specialBadge:'⭐ Especial', watchAd:'Assistir anúncio', unlockTitle:'Imagem bloqueada', seqDesc:'Termine a imagem anterior para desbloquear grátis — ou assista a um anúncio curto e desbloqueie agora.', specialDesc:'Esta imagem especial é grátis: assista a um anúncio curto para desbloquear. Sem pagamento, nunca.', playPrev:'Jogar imagem anterior', claim:'Resgatar recompensa', rewardedNote:'Anúncio recompensado — no app real, um anúncio recompensado do Unity toca aqui.', hintsAdded:'+3 dicas adicionadas!', unlockedAd:'Desbloqueado — divirta-se!', pictures:'imagens', finished:'concluídas', starsEarned:'estrelas ganhas', loadMore:'Carregar mais imagens',
  showing:'Mostrando', of:'de', noResults:'Nenhuma imagem encontrada. Tente outra pesquisa!',
  play:'Jogar', redo:'Refazer', unlock:'Desbloquear', startHint:'Toque para começar', againHint:'Colorir de novo', doneBadge:'✓ Pronto',
  parts:'partes', colorsWord:'cores', progress:'Progresso', colorsHead:'Cores',
@@ -4639,7 +4573,7 @@ pt:{tagline:'Escolha uma imagem, escolha uma cor e toque em cada parte com esse 
  encourage:['Quase! Tente de novo.','Essa não — olhe o número.','Olhe o número e tente de novo!']},
 ru:{tagline:'Выбери картинку, выбери цвет и нажимай на каждую часть с этим номером. Заполни всё, чтобы завершить рисунок!',
  step1:'Выбери цвет внизу', step2:'Нажимай на части с этим номером', step3:'Заверши и получи звёзды',
- search:'Поиск картинок…', random:'Удиви меня!', sideEasy:'Легко', sideHard:'Сложно', sideAll:'Все картинки', freePill:'Специальные картинки открываются бесплатно — просто посмотри рекламу', specialWord:'Особые', catSpecial:'⭐ Особые', specialBadge:'⭐ Особая', watchAd:'Смотреть рекламу', unlockTitle:'Картинка закрыта', seqDesc:'Заверши предыдущую картинку, чтобы открыть эту бесплатно — или посмотри короткую рекламу и открой её сразу.', specialDesc:'Эта особая картинка бесплатна — посмотри короткую рекламу, чтобы открыть её. Никакой оплаты, никогда.', playPrev:'Играть предыдущую картинку', claim:'Забрать награду', rewardedNote:'Реклама с наградой — в настоящем приложении здесь играет вознаграждаемая реклама AdMob.', hintsAdded:'+3 подсказки добавлено!', unlockedAd:'Открыто — приятной игры!', pictures:'картинок', finished:'завершено', starsEarned:'звёзд заработано', loadMore:'Показать ещё картинки',
+ search:'Поиск картинок…', random:'Удиви меня!', sideEasy:'Легко', sideHard:'Сложно', sideAll:'Все картинки', freePill:'Специальные картинки открываются бесплатно — просто посмотри рекламу', specialWord:'Особые', catSpecial:'⭐ Особые', specialBadge:'⭐ Особая', watchAd:'Смотреть рекламу', unlockTitle:'Картинка закрыта', seqDesc:'Заверши предыдущую картинку, чтобы открыть эту бесплатно — или посмотри короткую рекламу и открой её сразу.', specialDesc:'Эта особая картинка бесплатна — посмотри короткую рекламу, чтобы открыть её. Никакой оплаты, никогда.', playPrev:'Играть предыдущую картинку', claim:'Забрать награду', rewardedNote:'Реклама с наградой — в настоящем приложении здесь играет вознаграждаемая реклама Unity.', hintsAdded:'+3 подсказки добавлено!', unlockedAd:'Открыто — приятной игры!', pictures:'картинок', finished:'завершено', starsEarned:'звёзд заработано', loadMore:'Показать ещё картинки',
  showing:'Показано', of:'из', noResults:'Картинки не найдены. Попробуй другой поиск!',
  play:'Играть', redo:'Ещё раз', unlock:'Открыть', startHint:'Нажми, чтобы начать', againHint:'Раскрасить снова', doneBadge:'✓ Готово',
  parts:'частей', colorsWord:'цветов', progress:'Прогресс', colorsHead:'Цвета',
@@ -4660,7 +4594,7 @@ ru:{tagline:'Выбери картинку, выбери цвет и нажим�
  encourage:['Почти! Попробуй ещё раз.','Не эта — посмотри на номер.','Посмотри на номер и попробуй снова!']},
 ja:{tagline:'絵を選んで、色を選んで、同じ番号の部分をすべてタップしよう。全部ぬると絵が完成するよ！',
  step1:'下から色を選ぼう', step2:'その番号の部分をタップしよう', step3:'完成させて星をゲット',
- search:'絵をさがす…', random:'おまかせ！', sideEasy:'かんたん', sideHard:'むずかしい', sideAll:'全部の絵', freePill:'スペシャル絵は無料で解放 — 広告を見るだけ', specialWord:'スペシャル', catSpecial:'⭐ スペシャル', specialBadge:'⭐ スペシャル', watchAd:'広告を見る', unlockTitle:'ロック中', seqDesc:'前の絵をクリアすると無料で解放されます。短い広告を見れば今すぐ解放できます。', specialDesc:'このスペシャル絵は無料です。短い広告を見て解放しよう。お支払いは一切ありません。', playPrev:'前の絵であそぶ', claim:'報酬を受け取る', rewardedNote:'リワード広告 — 本物のアプリではここでAdMobのリワード広告が再生されます。', hintsAdded:'ヒント+3を追加！', unlockedAd:'解放されました — 楽しんでね！', pictures:'枚の絵', finished:'枚完成', starsEarned:'星をゲット', loadMore:'もっと絵を見る',
+ search:'絵をさがす…', random:'おまかせ！', sideEasy:'かんたん', sideHard:'むずかしい', sideAll:'全部の絵', freePill:'スペシャル絵は無料で解放 — 広告を見るだけ', specialWord:'スペシャル', catSpecial:'⭐ スペシャル', specialBadge:'⭐ スペシャル', watchAd:'広告を見る', unlockTitle:'ロック中', seqDesc:'前の絵をクリアすると無料で解放されます。短い広告を見れば今すぐ解放できます。', specialDesc:'このスペシャル絵は無料です。短い広告を見て解放しよう。お支払いは一切ありません。', playPrev:'前の絵であそぶ', claim:'報酬を受け取る', rewardedNote:'リワード広告 — 本物のアプリではここでUnityのリワード広告が再生されます。', hintsAdded:'ヒント+3を追加！', unlockedAd:'解放されました — 楽しんでね！', pictures:'枚の絵', finished:'枚完成', starsEarned:'星をゲット', loadMore:'もっと絵を見る',
  showing:'表示中', of:'/', noResults:'絵が見つかりませんでした。別の言葉で探してみてね！',
  play:'あそぶ', redo:'もう一度', unlock:'開く', startHint:'タップしてスタート', againHint:'もう一度ぬる', doneBadge:'✓ 完成',
  parts:'部分', colorsWord:'色', progress:'進みぐあい', colorsHead:'色',
@@ -4681,7 +4615,7 @@ ja:{tagline:'絵を選んで、色を選んで、同じ番号の部分をすべ�
  encourage:['おしい！もう一度。','それじゃないよ — 番号を見てね。','番号を見てもう一度！']},
 zh:{tagline:'选一幅图，选一个颜色，点击所有相同数字的部分。全部填满，完成作品！',
  step1:'在下方选择颜色', step2:'点击相同数字的部分', step3:'完成并赢得星星',
- search:'搜索图片…', random:'随机来一张！', sideEasy:'简单', sideHard:'困难', sideAll:'全部图片', freePill:'特别图片免费解锁——只需看广告', specialWord:'特别', catSpecial:'⭐ 特别', specialBadge:'⭐ 特别', watchAd:'看广告', unlockTitle:'图片未解锁', seqDesc:'完成前一张图片即可免费解锁——或看一小段广告立即解锁。', specialDesc:'这幅特别图片免费——看一小段广告即可解锁。永远无需付款。', playPrev:'玩上一张图片', claim:'领取奖励', rewardedNote:'激励广告——在正式应用中，这里会播放 AdMob 激励广告。', hintsAdded:'已增加+3次提示！', unlockedAd:'已解锁——尽情享受！', pictures:'幅图片', finished:'已完成', starsEarned:'颗星星', loadMore:'加载更多图片',
+ search:'搜索图片…', random:'随机来一张！', sideEasy:'简单', sideHard:'困难', sideAll:'全部图片', freePill:'特别图片免费解锁——只需看广告', specialWord:'特别', catSpecial:'⭐ 特别', specialBadge:'⭐ 特别', watchAd:'看广告', unlockTitle:'图片未解锁', seqDesc:'完成前一张图片即可免费解锁——或看一小段广告立即解锁。', specialDesc:'这幅特别图片免费——看一小段广告即可解锁。永远无需付款。', playPrev:'玩上一张图片', claim:'领取奖励', rewardedNote:'激励广告——在正式应用中，这里会播放 Unity 激励广告。', hintsAdded:'已增加+3次提示！', unlockedAd:'已解锁——尽情享受！', pictures:'幅图片', finished:'已完成', starsEarned:'颗星星', loadMore:'加载更多图片',
  showing:'显示', of:'/', noResults:'没有找到图片。换个词试试！',
  play:'开始', redo:'重玩', unlock:'解锁', startHint:'点击开始', againHint:'再涂一次', doneBadge:'✓ 已完成',
  parts:'个部分', colorsWord:'种颜色', progress:'进度', colorsHead:'颜色',
@@ -4861,7 +4795,6 @@ function isLevelUnlocked(p){
   return !!completedSet[PUZZLES[i-1].id];
 }
 function isPlayable(p){ return !isAdLocked(p) && isLevelUnlocked(p); }
-var pendingNextId=null, adTimer=null;
 /* Fallback copy for the out-of-hints message (not in every language pack) */
 if(!I18N.en.outOfHints) I18N.en.outOfHints='No hints left! Watch an ad to get +3 hints.';
 if(!I18N.en.pickColorStart) I18N.en.pickColorStart='Pick any color below — then find every part with that number yourself!';
@@ -5695,7 +5628,7 @@ function buildThumb(p, done){
 function renderGallery(){
   /* Home is showing: the native banner belongs here, never
      while a picture is being coloured. */
-  if(window.AdMobNative) window.AdMobNative.showHomeBanner();
+  if(window.UnityAdsNative) window.UnityAdsNative.showHomeBanner();
   updateLoopUI();
   var list=filteredPuzzles();
   var grid=$('galleryGrid'); grid.innerHTML='';
@@ -5793,7 +5726,7 @@ function startPuzzle(id){
   current=p;
   closeZoomLens();
   /* In-game: hide the native banner (Banner = Home only). */
-  if(window.AdMobNative) window.AdMobNative.hideBanner();
+  if(window.UnityAdsNative) window.UnityAdsNative.hideBanner();
   filled=current.regions.map(function(){return false;});
   selected=null;
   hintsLeft=3;
@@ -5971,8 +5904,8 @@ function confetti(){
 /* ============================================================ Unlock & Rewarded Ads
    Ads-only model: nothing is sold. Locked Special pictures, early
    level unlocks and extra hints are all earned by watching a
-   rewarded ad (AdMob rewarded placeholder below). */
-var pendingUnlockId=null, rewardCb=null, rewardTimer=null;
+   rewarded ad (Unity Ads — real SDK only, no demo). */
+var pendingUnlockId=null;
 function openUnlock(p){
   pendingUnlockId=p.id;
   $('unlockTitle').textContent=t('unlockTitle');
@@ -5983,42 +5916,22 @@ function openUnlock(p){
 }
 function closeUnlock(){ $('unlockOverlay').classList.add('hidden'); pendingUnlockId=null; }
 function showRewardedAd(cb){
-  /* Native first: real AdMob rewarded ad. Reward is granted
-     only when AdMob says it was earned. If the ad cannot load
-     (no fill) the demo overlay below is the fallback; if the
-     user closes it without earning, no reward and no demo. */
-  if(window.AdMobNative && window.AdMobNative.isReady()){
-    window.AdMobNative.showRewarded(function(){
+  /* Native first: real Unity rewarded ad. Reward is granted
+     only when Unity says it was earned. If no real ad is ready,
+     the player is told to try again later — no reward is ever
+     granted without a real completed ad. */
+  if(window.UnityAdsNative && window.UnityAdsNative.isReady()){
+    window.UnityAdsNative.showRewarded(function(){
       if(cb) cb();
     }, function(){
-      showDemoRewarded(cb);
+      showToast(t('adNotReady'));
     }, function(){
       showToast(lang==='hi' ? 'विज्ञापन पूरा नहीं हुआ — फिर से कोशिश करो' : 'Ad not finished — please try again');
     });
     return;
   }
-  showDemoRewarded(cb);
+  showToast(t('adNotReady'));
 }
-function showDemoRewarded(cb){
-  rewardCb=cb||null;
-  $('rewardedOverlay').classList.remove('hidden');
-  var btn=$('rewardClaimBtn'), fill=$('rewardFill');
-  var secs=5, elapsed=0;
-  btn.disabled=true; btn.textContent=tf('closeIn', secs); fill.style.width='0%';
-  clearInterval(rewardTimer);
-  rewardTimer=setInterval(function(){
-    elapsed++; secs--;
-    fill.style.width=Math.min(100, elapsed*20)+'%';
-    if(secs<=0){
-      clearInterval(rewardTimer);
-      btn.disabled=false;
-      btn.textContent='🎁 '+t('claim');
-    } else {
-      btn.textContent=tf('closeIn', secs);
-    }
-  }, 1000);
-}
-function closeRewarded(){ clearInterval(rewardTimer); $('rewardedOverlay').classList.add('hidden'); rewardCb=null; }
 
 /* ============================================================ Wiring */
 $('backBtn').addEventListener('click', function(){
@@ -6153,68 +6066,21 @@ $('hintBtn').addEventListener('click', function(){
     }, 2950);
   })(el, numEl, fx);
 });
-function armAdClose(){
-  var btn=$('adCloseBtn');
-  var secs=3;
-  btn.disabled=true;
-  btn.textContent=tf('closeIn', secs);
-  clearInterval(adTimer);
-  adTimer=setInterval(function(){
-    secs--;
-    if(secs<=0){
-      clearInterval(adTimer);
-      btn.disabled=false;
-      btn.textContent='✕ Close';
-    } else {
-      btn.textContent=tf('closeIn', secs);
-    }
-  }, 1000);
-}
 function showAdBreak(nextId){
-  /* Native first: real AdMob interstitial. The next picture
-     starts only after the ad is dismissed. If no real ad is
-     available (web preview / no fill), the demo overlay below
-     is the fallback — the player is never stuck. */
-  pendingNextId=nextId;
-  if(window.AdMobNative && window.AdMobNative.isReady()){
-    window.AdMobNative.showInterstitial(function(){
-      var id=pendingNextId; pendingNextId=null;
-      if(id) startPuzzle(id);
+  /* Native first: real Unity interstitial. The next picture
+     starts only after the ad is dismissed; if no real ad is
+     ready the next picture just starts — no fake break is ever
+     shown. */
+  if(window.UnityAdsNative && window.UnityAdsNative.isReady()){
+    window.UnityAdsNative.showInterstitial(function(){
+      if(nextId) startPuzzle(nextId);
     }, function(){
-      showDemoAdBreak();
+      if(nextId) startPuzzle(nextId);
     });
     return;
   }
-  showDemoAdBreak();
+  if(nextId) startPuzzle(nextId);
 }
-function showDemoAdBreak(){
-  $('adBreakTag').textContent='AD';
-  $('adBreakNote').textContent='Ad break — in the real app, an AdMob interstitial ad plays here.';
-  $('adBreakUnit').textContent='AdMob unit ID: '+window.ADMOB_CONFIG.interstitialUnitId;
-  $('winOverlay').classList.add('hidden');
-  $('adOverlay').classList.remove('hidden');
-  armAdClose();
-}
-/* App-open ad: shown once, the moment the game first opens,
-   before the player picks a picture. In the native app this is
-   the AdMob App Open format (ADMOB_CONFIG.appOpenUnitId). */
-var appOpenShown=false;
-function showAppOpenAd(){
-  if(appOpenShown) return;
-  appOpenShown=true;
-  if(window.admobShowAppOpen) window.admobShowAppOpen(function(){});
-  pendingNextId=null;
-  $('adBreakTag').textContent='APP OPEN AD';
-  $('adBreakNote').textContent='Welcome ad — in the real app, an AdMob app-open ad plays here every time the game starts.';
-  $('adBreakUnit').textContent='AdMob unit ID: '+window.ADMOB_CONFIG.appOpenUnitId;
-  $('adOverlay').classList.remove('hidden');
-  armAdClose();
-}
-$('adCloseBtn').addEventListener('click', function(){
-  clearInterval(adTimer);
-  $('adOverlay').classList.add('hidden');
-  if(pendingNextId){ var id=pendingNextId; pendingNextId=null; startPuzzle(id); }
-});
 $('nextBtn').addEventListener('click', function(){
   var nxt=findNextPlayable();
   if(!nxt) return;
@@ -6287,10 +6153,6 @@ $('unlockWatchBtn').addEventListener('click', function(){
     renderGallery(); startPuzzle(id);
   });
 });
-$('rewardClaimBtn').addEventListener('click', function(){
-  var cb=rewardCb; closeRewarded(); if(cb) cb();
-});
-$('rewardCancelBtn').addEventListener('click', closeRewarded);
 $('settingsBtn').addEventListener('click', function(){ $('settingsOverlay').classList.remove('hidden'); });
 $('settingsCloseBtn').addEventListener('click', function(){ $('settingsOverlay').classList.add('hidden'); });
 $('langSelect').addEventListener('change', function(e){
@@ -6367,10 +6229,6 @@ $('settingsOverlay').addEventListener('click', function(e){ if(e.target===$('set
 })();
 
 /* ============================================================ Init */
-document.querySelectorAll('[data-ad-unit]').forEach(function(el){
-  var key=el.getAttribute('data-ad-unit');
-  el.textContent='AdMob unit ID: '+(window.ADMOB_CONFIG ? window.ADMOB_CONFIG[key] : '');
-});
 loadProgress();
 $('langSelect').value=lang;
 $('setVib').setAttribute('aria-pressed', vibrationOn ? 'true' : 'false');
@@ -6381,10 +6239,9 @@ applyI18n();
    the bundled 214 pictures are already on screen; new ones merge
    in and re-render the gallery when the fetch succeeds. */
 loadExtraPictures();
-/* Start the real AdMob SDK (native APK only; web = no-op). */
-if(window.AdMobNative) window.AdMobNative.init();
-/* First-open ad break (AdMob App Open placeholder) — once per app start. */
-setTimeout(showAppOpenAd, 650);
+/* Start the real Unity SDK (native APK only; web = no-op). */
+if(window.UnityAdsNative) window.UnityAdsNative.init();
+/* No App Open format in Unity Ads — nothing shows on cold start. */
 </script>
 
 
