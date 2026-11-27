@@ -760,6 +760,29 @@
 </style>
 </head>
 <body>
+<style>
+.net-gate{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;background:rgba(20,8,40,.92);padding:20px;box-sizing:border-box}
+.net-gate.show{display:flex}
+.net-gate-card{max-width:340px;width:100%;text-align:center;background:linear-gradient(160deg,#ff5fa2,#7b5cff);border-radius:24px;padding:28px 22px;color:#fff;box-shadow:0 12px 40px rgba(0,0,0,.45)}
+.net-gate-icon{font-size:44px}
+.net-gate-card h2{margin:8px 0 6px;font-size:24px}
+.net-gate-card p{margin:6px 0;font-size:16px;line-height:1.45}
+.net-gate-en{opacity:.85;font-size:14px}
+#netGateRetry{margin-top:14px;padding:12px 26px;font-size:17px;font-weight:700;border:0;border-radius:999px;background:#fff;color:#7b5cff;cursor:pointer}
+body.net-gated *{animation-play-state:paused !important}
+</style>
+<div id="netGate" class="net-gate">
+  <div class="net-gate-card">
+    <div class="net-gate-icon">📶</div>
+    <h2>Internet on karo</h2>
+    <p>Game khelne ke liye mobile data ya Wi-Fi on hona chahiye.</p>
+    <p class="net-gate-en">Turn on mobile data or Wi-Fi to play.</p>
+    <button id="netGateRetry" type="button">Dobara check karo</button>
+  </div>
+</div>
+<script>
+(function(){var gate=document.getElementById('netGate');var retry=document.getElementById('netGateRetry');function sync(){var on=navigator.onLine;gate.classList.toggle('show',!on);document.body.classList.toggle('net-gated',!on);return on;}window.addEventListener('online',sync);window.addEventListener('offline',sync);document.addEventListener('visibilitychange',function(){if(!document.hidden)sync();});if(retry)retry.addEventListener('click',sync);sync();})();
+</script>
 <div class="wrap">
 
   <!-- ================= GALLERY ================= -->
