@@ -154,6 +154,22 @@ jobs:
                   print('replaced', p)
           EOF
 
+      # Notification icons: white-silhouette small icon + full-colour large icon.
+      # Without these, Android falls back to the launcher icon as the small icon
+      # and shows the white-circle "!" placeholder. Files live in the repo at
+      # notif-icons/ (flat names: ic_stat_icon__<density>.png).
+      - name: Add notification icons
+        run: |
+          set -e
+          for d in mdpi hdpi xhdpi xxhdpi xxxhdpi; do
+            mkdir -p "android/app/src/main/res/drawable-$d"
+            cp "notif-icons/ic_stat_icon__$d.png" "android/app/src/main/res/drawable-$d/ic_stat_icon.png"
+            cp "notif-icons/ic_notif_large__$d.png" "android/app/src/main/res/drawable-$d/ic_notif_large.png"
+          done
+          mkdir -p android/app/src/main/res/drawable
+          cp notif-icons/ic_stat_icon__nodpi.png android/app/src/main/res/drawable/ic_stat_icon.png
+          cp notif-icons/ic_notif_large__nodpi.png android/app/src/main/res/drawable/ic_notif_large.png
+          ls android/app/src/main/res/drawable-*/ic_stat_icon.png android/app/src/main/res/drawable-*/ic_notif_large.png
       - name: Configure release signing
         # Same keystore for every build -> same certificate -> Android
         # accepts the new APK as an update over the old one.
